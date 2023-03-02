@@ -1,0 +1,17 @@
+.modal-dialog {
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    position: absolute;
+}
+button.set {
+    border: none;
+    background: none;
+}
+option:disabled {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+.content .card {
+    min-height: 550px;
+}
