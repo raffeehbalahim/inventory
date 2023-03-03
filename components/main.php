@@ -10,6 +10,47 @@
 						<h5 class="card-title mb-0">Peripherals</h5>
 						<a data-bs-toggle="modal" data-bs-target="#createItem"><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
+					<div class="card-header d-flex">
+					<form action="index.php" method="post" autocomplete="off">
+						<a class="card-title mb-0" style=" margin-right:10px;">Set: </a>
+						<div class="col-auto" style="width:100px;">
+                            <select class="form-select mb-3" name="bundle">
+								<?php
+									#Checks if Set is Selected for Sorting
+									#Displays options for Sorting Sets
+									if(isset($_POST['bundle'])){
+										$option = $_POST['bundle'];
+									} else{
+										$option = 'all';
+									}
+									if($option == 'all'){
+										echo '<option value="all" selected>All</option>';
+									} else {
+										echo '<option value="all">All</option>';
+									}
+									if($option == '0'){
+										echo '<option value="0" selected>No Set</option>';
+									} else {
+										echo '<option value="0">No Set</option>';
+									}
+								?>
+                                <?php
+                                    $bundles = "SELECT * FROM set_bundle"; 
+                                    $getBundles = mysqli_query($db, $bundles);
+            
+                                    while ($bundle = mysqli_fetch_assoc($getBundles)) {
+                                        if($option == $bundle['set_id']) {
+											echo '<option value="' . $bundle['set_id'] . '" selected>' . $bundle['set_name'] . '</option>'; 
+										} else {
+											echo '<option value="' . $bundle['set_id'] . '">' . $bundle['set_name'] . '</option>'; 
+										}
+                                    }
+                                ?>
+                            </select>
+                    	</div>
+						<button type="submit" class="btn btn-primary" name="submit">Sort</button>
+					</form>
+					</div>
 					<table class="table table-hover my-0">
 						<thead>
 							<tr>
@@ -25,8 +66,19 @@
 						</thead>
 						<tbody>
 							<?php
-								$get_peripherals = "SELECT * FROM peripherals";
-								$result = mysqli_query($db, $get_peripherals);
+								if(isset($_POST['bundle'])){
+									$check = $_POST['bundle'];
+									if($check != 'all'){
+										$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check'";
+										$result = mysqli_query($db, $get_peripherals);
+									} else {
+										$get_peripherals = "SELECT * FROM peripherals";
+										$result = mysqli_query($db, $get_peripherals);
+									}
+								} else {
+									$get_peripherals = "SELECT * FROM peripherals";
+									$result = mysqli_query($db, $get_peripherals);
+								}
 
 								while ($peripherals = mysqli_fetch_assoc($result)) {
 									echo '<tr>';
