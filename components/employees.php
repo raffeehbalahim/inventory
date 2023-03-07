@@ -6,7 +6,19 @@
 		<div class="row">
 			<div class="col-12 d-flex">
 				<div class="card flex-fill">
-					<div class="card-header d-flex justify-content-end">
+					<div class="card-header d-flex justify-content-between">
+						<div style="display: inline;">
+						<?php
+							$employee = "";
+							if(isset($_POST['employee'])){
+								$employee = $_POST['employee'];
+							}
+						?>
+						<form action="employee.php" method="post" autocomplete="off">
+							<input type="text" class="employee-form" placeholder="Employee" value="<?php echo $employee; ?>" name="employee">
+							<button type="submit" class="btn btn-primary" name="submit">Search</button>
+						</form>
+						</div>
 						<a data-bs-toggle="modal" data-bs-target="#createEmployee"><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
 					<table class="table table-hover my-0">
@@ -20,7 +32,12 @@
 						</thead>
 						<tbody>
 							<?php
-								$employees = "SELECT * FROM employees";
+								if($employee == ""){
+									$employees = "SELECT * FROM employees";
+								}
+								else {
+									$employees = "SELECT * FROM employees WHERE firstname LIKE '%$employee%' OR lastname LIKE '%$employee%' OR CONCAT_WS(' ',firstname,lastname) LIKE '%$employee%'";
+								}
 								$getEmployees = mysqli_query($db, $employees);
 
 								while ($employee = mysqli_fetch_assoc($getEmployees)) {
@@ -62,3 +79,20 @@
 		</div>
 	</div>
 </main>
+<style>
+	.employee-form {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    color: #495057;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: .3rem .85rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+</style>

@@ -376,3 +376,23 @@
 		</div>
 	</div>
 </div>
+<!-- Filter Item -->
+<div class="modal fade" id="filterItem" tabindex="-1"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <form action="lib/create.php" method="post" autocomplete="off">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create set</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input required type="text" class="form-control" placeholder="Set" name="newBundle">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="createBundle">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
