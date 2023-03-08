@@ -1,5 +1,8 @@
 <main class="content">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
+  
+<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
 	<div class="container-fluid p-0">
 
 		<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
@@ -9,10 +12,16 @@
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-between">
 						<h5 class="card-title mb-0">Peripherals</h5>
-						<a data-bs-toggle="modal" data-bs-target="#createItem"><i class="align-middle me-2" data-feather="plus"></i></a>
+						<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>
+					</div>
+					<div class="card-header d-flex">
+						<input id="searchInput" placeholder="Search" onkeyup="searchTable()">
 					</div>
 					<div class="filter">
-					<button class="btn btn-primary" id="showFilter" onclick="showFilters()">Show More</button>
+					<div id="showFilter">
+						<label for="inputFirstname">Filter: </label>
+						<button class="btn btn-primary" onclick="showFilters()">Show More</button>
+					</div>
 					<div class="filter-option" id="filter">
 					<form action="index.php" method="post" autocomplete="off">
 							<div class="d-flex justify-content-between">
@@ -35,7 +44,15 @@
 									<div class="col">
 										<input type="text" class="form-control" placeholder="Manufacturer" value="" name="manufacturer">
 									</div>
-								</div>	
+								</div>
+								<div class="row mb-3">
+                        			<div class="col">
+										<input type="number" class="form-control" placeholder="Specs" value="" name="Specs">
+									</div>
+									<div class="col">
+										<input type="text" class="form-control" placeholder="Receipt ID" value="" name="receiptId">
+									</div>
+								</div>		
 								<div class="row mb-3">
                         			<div class="col">
 										<input type="date" class="form-control" name="purchaseDate">
@@ -59,7 +76,7 @@
 									</div>
 								</div>		
 							</div>
-						<button type="submit" class="btn btn-primary" style="float:right" name="submit">Filter</button>
+						<button type="submit" class="btn btn-primary" style="float:right" name="submit">Add Filter</button>
 					</form>
 					</div>
 					
@@ -104,7 +121,7 @@
 						<button type="submit" class="btn btn-primary" name="submit">Filter</button>
 					</form>-->
 					</div>
-					<table class="table table-hover my-0">
+					<table id="myTable" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<?php
@@ -146,6 +163,24 @@
 										} else {
 											echo '<th><a class="sort-head" href="index.php?sort=purchase_date&order=asc">Purchase Date</a></th>';
 										}
+										if($_GET['sort'] == 'specs'){
+											if($_GET['order'] == 'asc'){
+											echo '<th><a class="sort-head" href="index.php?sort=specs&order=desc">Specs <i class="fa fa-sort-down"></i></a></th>';
+											} else {
+											echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Specs <i class="fa fa-sort-up"></i></a></th>';
+											}
+										} else {
+											echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Specs</a></th>';
+										}
+										if($_GET['sort'] == 'price'){
+											if($_GET['order'] == 'asc'){
+											echo '<th><a class="sort-head" href="index.php?sort=price&order=desc">Item Cost <i class="fa fa-sort-down"></i></a></th>';
+											} else {
+											echo '<th><a class="sort-head" href="index.php?sort=price&order=asc">Item Cost <i class="fa fa-sort-up"></i></a></th>';
+											}
+										} else {
+											echo '<th><a class="sort-head" href="index.php?sort=price&order=asc">Item Cost</a></th>';
+										}
 										if($_GET['sort'] == 'manufacturer'){
 											if($_GET['order'] == 'asc'){
 											echo '<th><a class="sort-head" href="index.php?sort=manufacturer&order=desc">Manufacturer <i class="fa fa-sort-down"></i></a></th>';
@@ -154,6 +189,15 @@
 											}
 										} else {
 											echo '<th><a class="sort-head" href="index.php?sort=manufacturer&order=asc">Manufacturer</a></th>';
+										}
+										if($_GET['sort'] == 'receipt_id'){
+											if($_GET['order'] == 'asc'){
+											echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=desc">Receipt ID <i class="fa fa-sort-down"></i></a></th>';
+											} else {
+											echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=asc">Receipt ID <i class="fa fa-sort-up"></i></a></th>';
+											}
+										} else {
+											echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=asc">Receipt ID</a></th>';
 										}
 										if($_GET['sort'] == 'set_id'){
 											if($_GET['order'] == 'asc'){
@@ -171,12 +215,15 @@
 										echo '<th><a class="sort-head" href="index.php?sort=unit&order=asc">Unit</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=serial_number&order=asc">Serial Number</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=purchase_date&order=asc">Purchase Date</a></th>';
+										echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Specs</a></th>';
+										echo '<th><a class="sort-head" href="index.php?sort=price&order=asc">Item Cost</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=manufacturer&order=asc">Manufacturer</a></th>';
+										echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=asc">Receipt ID</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=set_id&order=asc">Set</a></th>';
 										//<!-- <th>Status</th> -->
 										
 									}
-									echo '<th>Edit</th>';
+									echo '<th>Actions</th>';
 								?>
 							</tr>
 						</thead>
@@ -211,6 +258,16 @@
 								} else {
 									$purchaseDate = "";
 								}
+								if(isset($_POST['specs'])){
+									$specs = $_POST['specs'];
+								} else {
+									$specs = "";
+								}
+								if(isset($_POST['receiptId'])){
+									$receiptId = $_POST['receiptId'];
+								} else {
+									$receiptId = "";
+								}
 								#checks if Sort Option is Selected
 								if(isset($_GET['sort'])){
 									$sort = $_GET['sort'];
@@ -223,29 +280,29 @@
 											$order = $_GET['order'];
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												}
 											} else {
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												}
 											}
 										} else {
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												}
 											} else {
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND serial_number = '$serial_number' AND  brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND serial_number = '$serial_number' AND  brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND serial_number = '$serial_number' AND  brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND serial_number = '$serial_number' AND  brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												}
 											}
 										}
@@ -255,29 +312,29 @@
 											$order = $_GET['order'];
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND purchase_date = '$purchaseDate' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND purchase_date = '$purchaseDate' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												}
 											} else {
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' ORDER BY $sort $order";
+													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												}
 											}
 										} else {
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND purchase_date = '$purchaseDate' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND purchase_date = '$purchaseDate' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												}
 											} else {
 												if($purchaseDate == ""){
-													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												} else {
-													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number'  AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%'";
+													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number'  AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												}
 											}
 										}
@@ -301,12 +358,15 @@
 										echo '<td>' . $peripherals['unit'] . '</td>';
 										echo '<td>' . $peripherals['serial_number'] . '</td>';
 										echo '<td>' . $peripherals['purchase_date'] . '</td>';
+										echo '<td>' . $peripherals['specs'] . '</td>';
+										echo '<td>' . $peripherals['price'] . '</td>';
 										echo '<td>' . $peripherals['manufacturer'] . '</td>';
+										echo '<td>' . $peripherals['receipt_id'] . '</td>';
 									
 										$set = $peripherals['set_id'];
 
 										if($set == 0) {
-											echo '<td>None</td>';
+											echo '<td><span class="unassigned">None</span></td>';
 										} else {
 											$get_setID = "SELECT *
 											FROM set_bundle 
@@ -317,20 +377,24 @@
 											if (mysqli_num_rows($result_set) > 0) {
 												while ($set = mysqli_fetch_assoc($result_set)) {
 													$set = $set['set_name'];
-													echo '<td>' . $set . '</td>';
+													if($set == "Archived"){
+														echo '<td><span class="archived">' . $set . '</span></td>';
+													} else {
+														echo '<td><span class="assigned">' . $set . '</span></td>';
+													}
 												}
 											} else {
-												echo '<td>None</td>';
+												echo '<td><span class="unassigned">None</span></td>';
 											}                    
 										}
 
 										echo '
 											<td>
+												<a data-bs-toggle="modal" data-bs-target="#editItem" class="item" id="' . $peripherals['component_id'] . '">
+													<i class="align-middle" data-feather="edit-2"></i>
+												</a>
 												<a href="" data-bs-toggle="modal" data-bs-target="#deleteItem" class="item">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
-												</a>
-												<a data-bs-toggle="modal" data-bs-target="#editItem" class="item" id="' . $peripherals['component_id'] . '">
-													<i class="align-middle" data-feather="settings"></i>
 												</a>
 											</td>';
 									echo '</tr>';
@@ -354,7 +418,10 @@
 								<th class="col-2">Set</th>
 								<!-- <th>Status</th> -->
 								<th>Assignee</th>
-								<th class>Edit</th>
+								<!-- Total Price Header -->
+								<th>Total Cost</th>
+								<!-- ------------------ -->
+								<th class>Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -380,15 +447,22 @@
 									} else {
 										echo '<td>None</td>';
 									}
-									
+									#Total Price
+									$total = "SELECT SUM(price) as price from peripherals WHERE set_id = '$bundleId' "; 
+									$getTotal = mysqli_query($db, $total);
+									$totals =mysqli_fetch_assoc($getTotal);
+									if($totals['price'] == ""){
+										$totals['price'] = 0;
+									}
+									echo '<td>' . $totals['price']  . '</td>';
+									#Total Price End Here
 									echo '
 									<td>
+										<a data-bs-toggle="modal" data-bs-target="#editSet" class="set">
+											<i class="align-middle" data-feather="edit-2"></i>
+										</a>
 										<a href="" data-bs-toggle="modal" data-bs-target="#deleteBundle" class="set">
 											<i class="align-middle me-2" data-feather="trash-2"></i>
-										</a>
-										
-										<a data-bs-toggle="modal" data-bs-target="#editSet" class="set">
-											<i class="align-middle" data-feather="settings"></i>
 										</a>
 									</td>';
 								echo '</tr>';
@@ -428,6 +502,21 @@
 		vertical-align: middle;
 		margin-top: 5px;
 	}
+	.assigned {
+		background-color: rgba(28,187,140,.15);
+    	color: #1cbb8c;
+		padding: 0.3em 0.45em;
+	}
+	.archived {
+		background-color: rgba(220,53,69,.15);
+    	color: #dc3545;
+		padding: 0.3em 0.45em;
+	}
+	.unassigned {
+		background-color: rgba(252,185,44,.15);
+    	color: #fcb92c;
+		padding: 0.3em 0.45em;
+	}
 </style>
 <script type="text/javascript">
 	function showFilters(){
@@ -438,4 +527,32 @@
 		document.getElementById("showFilter").style.display = 'block';
 		document.getElementById("filter").style.display = 'none';
 	}
+	function searchTable() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[3]; // Change the index to the column you want to search
+	  td2 = tr[i].getElementsByTagName("td")[4];
+	  td3 = tr[i].getElementsByTagName("td")[5];
+	  td4 = tr[i].getElementsByTagName("td")[6];
+	  td5 = tr[i].getElementsByTagName("td")[7];
+	  td6 = tr[i].getElementsByTagName("td")[8];
+	  td7 = tr[i].getElementsByTagName("td")[9];
+	  td8 = tr[i].getElementsByTagName("td")[10];
+      if (td) {
+        txtValue = (td.textContent + td2.textContent + td3.textContent + td4.textContent + td5.textContent + td6.textContent + td7.textContent + td8.textContent) || (td.innerText + td2.innerText);
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
 </script>

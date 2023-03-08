@@ -18,6 +18,32 @@
 		</div>
 	</div>
 </div>
+<!-- Add File -->
+<div class="modal fade" id="addFile" tabindex="-1"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <form action="lib/create.php" method="post" autocomplete="off" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Upload File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="container">
+	                    <fieldset>
+		                    <p><label for="name">Select file</label><br />
+		                    <input type="file" name="the_file" /></p>
+	                    </fieldset>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="addFile">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+<!-- End -->
 <!-- Create Item -->
 <div class="modal fade" id="createItem" tabindex="-1"  aria-hidden="true">
 	<div class="modal-dialog">
@@ -38,7 +64,7 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Serial Number" name="serialNumber">
+                            <input type="number" class="form-control" placeholder="Serial Number" name="serialNumber">
                         </div>
                         <div class="col">
                             <input type="date" class="form-control" name="purchaseDate">
@@ -46,9 +72,22 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col">
+                            <input type="text" class="form-control" placeholder="Specs" name="specs">
+                        </div>
+                        <div class="col">
+                        <input type="number" class="form-control" placeholder="Item Cost" name="price">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
                             <input type="text" class="form-control" placeholder="Manufacturer" name="manufacturer">
                         </div>
                         <div class="col">
+                        <input type="number" class="form-control" placeholder="Receipt ID" name="receiptId">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-auto">
                             <select class="form-select" name="bundle">
                                 <option disabled selected>Set</option>
                                 <?php
@@ -155,13 +194,29 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <input required type="text" class="form-control" placeholder="Serial Number" name="serial" id="serial">
+                            <input required type="number" class="form-control" placeholder="Serial Number" name="serial" id="serial">
                         </div>
                         <div class="col">
                             <input required type="date" class="form-control" name="purchaseDate" id="purchaseDate">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input required type="text" class="form-control" placeholder="Specs" name="specs" id="specs">
+                        </div>
+                        <div class="col">
+                            <input required type="number" class="form-control" placeholder="Item Cost" name="price" id="price">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input required type="text" class="form-control" placeholder="Manufacturer" name="manufacturer" id="manufacturer">
+                        </div>
+                        <div class="col">
+                            <input required type="number" class="form-control" placeholder="Receipt ID" name="receiptId" id="receiptId">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col-auto">
                             <select required class="form-select" name="set">
                                 <!--<option selected id="set"></option> -->

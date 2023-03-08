@@ -14,14 +14,14 @@
 								$employee = $_POST['employee'];
 							}
 						?>
-						<form action="employee.php" method="post" autocomplete="off">
-							<input type="text" class="employee-form" placeholder="Employee" value="<?php echo $employee; ?>" name="employee">
-							<button type="submit" class="btn btn-primary" name="submit">Search</button>
-						</form>
+						<!--<form action="employee.php" method="post" autocomplete="off">-->
+							<input type="text" id="searchInput" onkeyup="searchTable()" class="employee-form" placeholder="Search Employee" value="<?php echo $employee; ?>" name="employee">
+						<!--	<button type="submit" class="btn btn-primary" name="submit">Search</button>
+						</form> -->
 						</div>
 						<a data-bs-toggle="modal" data-bs-target="#createEmployee"><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
-					<table class="table table-hover my-0">
+					<table id="myTable" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<th>First Name</th>
@@ -61,12 +61,11 @@
 										
 										echo '
 											<td>
+												<a data-bs-toggle="modal" data-bs-target="#editEmployee" class="employee">
+													<i class="align-middle" data-feather="edit-2"></i>
+												</a>
 												<a href="" data-bs-toggle="modal" data-bs-target="#deleteEmployee" class="employee">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
-												</a>
-												
-												<a data-bs-toggle="modal" data-bs-target="#editEmployee" class="employee">
-													<i class="align-middle" data-feather="settings"></i>
 												</a>
 											</td>';
 									echo '</tr>';
@@ -96,3 +95,27 @@
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 </style>
+<script>
+	function searchTable() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+  
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[1]; // Change the index to the column you want to search
+	  td2 = tr[i].getElementsByTagName("td")[2];
+      if (td) {
+        txtValue = (td.textContent + td2.textContent) || (td.innerText + td2.innerText);
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }       
+    }
+  }
+</script>

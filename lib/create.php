@@ -4,22 +4,25 @@
     
     if(isset($_POST['createItem'])){
         # Create item
-         if ($_POST['brand'] && $_POST['unit'] && $_POST['serialNumber'] && $_POST['purchaseDate'] && $_POST['manufacturer']) {
+         if ($_POST['brand'] && $_POST['unit'] && $_POST['serialNumber'] && $_POST['purchaseDate'] && $_POST['specs'] && $_POST['price'] && $_POST['manufacturer']) {
            
              echo $brand = $_POST['brand'];
              echo $unit = $_POST['unit'];
              echo $serialNumber = $_POST['serialNumber'];
              echo $purchaseDate = $_POST['purchaseDate'];
+             echo $specs = $_POST['specs'];
+             echo $price = $_POST['price'];
              echo $manufacturer = $_POST['manufacturer'];
+             echo $receiptId = $_POST['receiptId'];
 
              if(isset($_POST['bundle'])){
                 $bundle = $_POST['bundle'];   
              } else {
-                 $bundle = 0;   
+                $bundle = 0;   
              }
              echo $bundle;
-             $createItem = "INSERT INTO peripherals (brand, unit, serial_number, purchase_date, manufacturer, set_id)
-                 VALUES ('$brand', '$unit', '$serialNumber', '$purchaseDate', '$manufacturer', '$bundle')";
+             $createItem = "INSERT INTO peripherals (brand, unit, serial_number, purchase_date, specs, price, manufacturer, receipt_id, set_id)
+                 VALUES ('$brand', '$unit', '$serialNumber', '$purchaseDate', '$specs', '$price', '$manufacturer', '$receiptId', '$bundle')";
              if (mysqli_query($db, $createItem)) {
                  echo "Item created successfully ";
              } else {
@@ -191,5 +194,46 @@
              header('location: ../employee.php');
         }
         
+    } else if(isset($_POST['addFile'])){
+        $currentDirectory = getcwd();
+        $uploadDirectory = "\../uploads/";
+
+        $errors = []; // Store errors here
+
+        $fileExtensionsAllowed = ['jpeg','jpg','png']; // These will be the only file extensions allowed 
+
+        $fileName = $_FILES['the_file']['name'];
+        $fileSize = $_FILES['the_file']['size'];
+        $fileTmpName  = $_FILES['the_file']['tmp_name'];
+        $fileType = $_FILES['the_file']['type'];
+        $fileExtension = strtolower(end(explode('.',$fileName)));
+
+        $uploadPath = $currentDirectory . $uploadDirectory . basename($fileName); 
+
+
+        if (! in_array($fileExtension,$fileExtensionsAllowed)) {
+            $errors[] = "This file extension is not allowed. Please upload a JPEG or PNG file";
+        }
+
+        if ($fileSize > 40000000) {
+            $errors[] = "File exceeds maximum size (40MB)";
+        }
+
+        if (empty($errors)) {
+            $didUpload = move_uploaded_file($fileTmpName, $uploadPath);
+
+            if ($didUpload) {
+                $insert = $db->query("INSERT into files (file_name, uploaded_on) VALUES ('".$fileName."', NOW())");
+                echo "The file " . basename($fileName) . " has been uploaded";
+                header('location: ../files.php');
+            } else {
+                echo "An error occurred. Please contact the administrator.";
+            }
+        } else {
+            foreach ($errors as $error) {
+                echo $error . "These are the errors" . "\n";
+            }
+        }
+
     }
 ?>

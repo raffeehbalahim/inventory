@@ -7,6 +7,10 @@
         $unit = $_POST['unit'];
         $serial = $_POST['serial'];
         $purchaseDate = $_POST['purchaseDate'];
+        $specs = $_POST['specs'];
+        $price = $_POST['price'];
+        $manufacturer = $_POST['manufacturer'];
+        $receiptId = $_POST['receiptId'];
         $set = $_POST['set']; 
         
         # Update item information
@@ -15,6 +19,10 @@
                 unit = '$unit',
                 serial_number = '$serial',
                 purchase_date = '$purchaseDate',
+                specs = '$specs',
+                price = '$price',
+                manufacturer = '$manufacturer',
+                receipt_id = '$receiptId',
                 set_id = '$set'
             WHERE component_id = '$item'";
         mysqli_query($db, $update_query);

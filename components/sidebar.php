@@ -19,6 +19,11 @@
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Employees</span>
                 </a>
 			</li>
+            <li class="sidebar-item">
+				<a class="sidebar-link" href="files.php">
+                    <i class="align-middle" data-feather="file"></i> <span class="align-middle">File Storage</span>
+                </a>
+			</li>
         </ul>
     </div>
 </nav>
