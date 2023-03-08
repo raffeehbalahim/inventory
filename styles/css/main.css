@@ -1,6 +1,6 @@
 .modal-dialog {
     top: 35%;
-    left: 50%;
+    left: 90%;
     transform: translate(-50%, -50%) !important;
     position: absolute;
 }
@@ -14,4 +14,48 @@ option:disabled {
 }
 .content .card {
     min-height: 550px;
+}
+
+.filter {
+    padding: 0 1.25rem;
+}
+.filter-option {
+    display: none;
+}
+/*.option-bundle {
+    width: 100%;
+    display: inline!important;
+}
+.option-bundle .form-select {
+    width: fit-content!important;
+    display: inline!important;
+}*/
+.sort-head {
+    color: #495057;
+}
+.fa.fa-sort-down{
+    vertical-align: middle;
+    margin-top: -5px;
+}
+.fa.fa-sort-up {
+    vertical-align: middle;
+    margin-top: 5px;
+}
+.assigned {
+    background-color: rgba(28,187,140,.15);
+    color: #1cbb8c;
+    padding: 0.3em 0.45em;
+}
+.archived {
+    background-color: rgba(220,53,69,.15);
+    color: #dc3545;
+    padding: 0.3em 0.45em;
+}
+.unassigned {
+    background-color: rgba(252,185,44,.15);
+    color: #fcb92c;
+    padding: 0.3em 0.45em;
+}
+div.card {
+    overflow: auto;
 }
