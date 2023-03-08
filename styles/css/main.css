@@ -1,6 +1,6 @@
 .modal-dialog {
     top: 35%;
-    left: 90%;
+    left: 50%;
     transform: translate(-50%, -50%) !important;
     position: absolute;
 }
@@ -58,4 +58,19 @@ option:disabled {
 }
 div.card {
     overflow: auto;
+}
+.employee-form {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .2rem;
+    color: #495057;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: .3rem .85rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }

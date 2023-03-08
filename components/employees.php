@@ -15,11 +15,11 @@
 							}
 						?>
 						<!--<form action="employee.php" method="post" autocomplete="off">-->
-							<input type="text" id="searchInput" onkeyup="searchTable()" class="employee-form" placeholder="Search Employee" value="<?php echo $employee; ?>" name="employee">
+							<input type="text" id="searchInput" onkeyup="searchEmployeeTable()" class="employee-form" placeholder="Search Employee" value="<?php echo $employee; ?>" name="employee">
 						<!--	<button type="submit" class="btn btn-primary" name="submit">Search</button>
 						</form> -->
 						</div>
-						<a data-bs-toggle="modal" data-bs-target="#createEmployee"><i class="align-middle me-2" data-feather="plus"></i></a>
+						<a data-bs-toggle="modal" data-bs-target="#createEmployee"><label for="addEmployee">Add Employee: </label><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
 					<table id="myTable" class="table table-hover my-0">
 						<thead>
@@ -78,44 +78,3 @@
 		</div>
 	</div>
 </main>
-<style>
-	.employee-form {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-clip: padding-box;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: .2rem;
-    color: #495057;
-    font-size: .875rem;
-    font-weight: 400;
-    line-height: 1.5;
-    padding: .3rem .85rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-</style>
-<script>
-	function searchTable() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-  
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1]; // Change the index to the column you want to search
-	  td2 = tr[i].getElementsByTagName("td")[2];
-      if (td) {
-        txtValue = (td.textContent + td2.textContent) || (td.innerText + td2.innerText);
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }
-</script>

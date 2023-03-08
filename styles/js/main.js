@@ -44,8 +44,12 @@ $('.item').click(function(){
     $('#editItem #unit').val($data[3]);
     $('#editItem #serial').val($data[4]);
     $('#editItem #purchaseDate').val($data[5]);
+    $('#editItem #specs').val($data[6]);
+    $('#editItem #price').val($data[7]);
+    $('#editItem #manufacturer').val($data[8]);
+    $('#editItem #receiptId').val($data[9]);
     $('#editItem #set').val($data[1]);
-    $('#editItem #set').text($data[6]);
+    $('#editItem #set').text($data[10]);
 
     $('#deleteItem #item').val($data[0]);
     $('#deleteItem #brand').val($data[1]);
@@ -100,7 +104,44 @@ $('.sidebar-item a').each(function(){
     }
 });
 
-function searchTable() {
+function showFilters(){
+    document.getElementById("showFilter").style.display = 'none';
+    document.getElementById("filter").style.display = 'block';
+}
+function closeFilters(){
+    document.getElementById("showFilter").style.display = 'block';
+    document.getElementById("filter").style.display = 'none';
+}
+function searchItemTable() {
+    // Declare variables
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3]; // Change the index to the column you want to search
+        td2 = tr[i].getElementsByTagName("td")[4];
+        td3 = tr[i].getElementsByTagName("td")[5];
+        td4 = tr[i].getElementsByTagName("td")[6];
+        td5 = tr[i].getElementsByTagName("td")[7];
+        td6 = tr[i].getElementsByTagName("td")[8];
+        td7 = tr[i].getElementsByTagName("td")[9];
+        td8 = tr[i].getElementsByTagName("td")[10];
+        if (td) {
+            txtValue = (td.textContent + td2.textContent + td3.textContent + td4.textContent + td5.textContent + td6.textContent + td7.textContent + td8.textContent) || (td.innerText + td2.innerText);
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }       
+    }
+}
+
+function searchEmployeeTable() {
     // Declare variables
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("searchInput");
@@ -110,9 +151,10 @@ function searchTable() {
   
     // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0]; // Change the index to the column you want to search
+      td = tr[i].getElementsByTagName("td")[1]; // Change the index to the column you want to search
+	  td2 = tr[i].getElementsByTagName("td")[2];
       if (td) {
-        txtValue = td.textContent || td.innerText;
+        txtValue = (td.textContent + td2.textContent) || (td.innerText + td2.innerText);
         if (txtValue.toUpperCase().indexOf(filter) > -1) {
           tr[i].style.display = "";
         } else {
@@ -120,4 +162,4 @@ function searchTable() {
         }
       }       
     }
-  }
+}

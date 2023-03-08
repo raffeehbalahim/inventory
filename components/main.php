@@ -15,7 +15,7 @@
 						<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
 					<div class="card-header d-flex">
-						<input id="searchInput" placeholder="Search" onkeyup="searchTable()">
+						<input id="searchInput" class="employee-form" placeholder="Search" onkeyup="searchItemTable()">
 					</div>
 					<div class="filter">
 					<div id="showFilter">
@@ -163,15 +163,6 @@
 										} else {
 											echo '<th><a class="sort-head" href="index.php?sort=purchase_date&order=asc">Purchase Date</a></th>';
 										}
-										if($_GET['sort'] == 'specs'){
-											if($_GET['order'] == 'asc'){
-											echo '<th><a class="sort-head" href="index.php?sort=specs&order=desc">Specs <i class="fa fa-sort-down"></i></a></th>';
-											} else {
-											echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Specs <i class="fa fa-sort-up"></i></a></th>';
-											}
-										} else {
-											echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Specs</a></th>';
-										}
 										if($_GET['sort'] == 'price'){
 											if($_GET['order'] == 'asc'){
 											echo '<th><a class="sort-head" href="index.php?sort=price&order=desc">Item Cost <i class="fa fa-sort-down"></i></a></th>';
@@ -199,6 +190,15 @@
 										} else {
 											echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=asc">Receipt ID</a></th>';
 										}
+										if($_GET['sort'] == 'specs'){
+											if($_GET['order'] == 'asc'){
+											echo '<th><a class="sort-head" href="index.php?sort=specs&order=desc">Additional Information <i class="fa fa-sort-down"></i></a></th>';
+											} else {
+											echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Additional Information <i class="fa fa-sort-up"></i></a></th>';
+											}
+										} else {
+											echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Additional Information</a></th>';
+										}
 										if($_GET['sort'] == 'set_id'){
 											if($_GET['order'] == 'asc'){
 											echo '<th><a class="sort-head" href="index.php?sort=set_id&order=desc">Set <i class="fa fa-sort-down"></i></a></th>';
@@ -215,10 +215,10 @@
 										echo '<th><a class="sort-head" href="index.php?sort=unit&order=asc">Unit</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=serial_number&order=asc">Serial Number</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=purchase_date&order=asc">Purchase Date</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Specs</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=price&order=asc">Item Cost</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=manufacturer&order=asc">Manufacturer</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=asc">Receipt ID</a></th>';
+										echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Additional Information</a></th>';
 										echo '<th><a class="sort-head" href="index.php?sort=set_id&order=asc">Set</a></th>';
 										//<!-- <th>Status</th> -->
 										
@@ -358,10 +358,10 @@
 										echo '<td>' . $peripherals['unit'] . '</td>';
 										echo '<td>' . $peripherals['serial_number'] . '</td>';
 										echo '<td>' . $peripherals['purchase_date'] . '</td>';
-										echo '<td>' . $peripherals['specs'] . '</td>';
 										echo '<td>' . $peripherals['price'] . '</td>';
 										echo '<td>' . $peripherals['manufacturer'] . '</td>';
 										echo '<td>' . $peripherals['receipt_id'] . '</td>';
+										echo '<td>' . $peripherals['specs'] . '</td>';
 									
 										$set = $peripherals['set_id'];
 
@@ -410,7 +410,7 @@
 				<div class="card flex-fill w-100">
 					<div class="card-header d-flex justify-content-between">
 						<h5 class="card-title mb-0">Sets</h5>
-						<a data-bs-toggle="modal" data-bs-target="#createBundle"><i class="align-middle me-2" data-feather="plus"></i></a>
+						<a data-bs-toggle="modal" data-bs-target="#createBundle"><label for="addSet">Add Set: </label><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
 					<table class="table table-hover my-0">
 						<thead>
@@ -475,84 +475,3 @@
 		</div>
 	</div>
 </main>
-
-<style>
-	.filter {
-		padding: 0 1.25rem;
-	}
-	.filter-option {
-		display: none;
-	}
-	/*.option-bundle {
-		width: 100%;
-		display: inline!important;
-	}
-	.option-bundle .form-select {
-		width: fit-content!important;
-		display: inline!important;
-	}*/
-	.sort-head {
-		color: #495057;
-	}
-	.fa.fa-sort-down{
-		vertical-align: middle;
-		margin-top: -5px;
-	}
-	.fa.fa-sort-up {
-		vertical-align: middle;
-		margin-top: 5px;
-	}
-	.assigned {
-		background-color: rgba(28,187,140,.15);
-    	color: #1cbb8c;
-		padding: 0.3em 0.45em;
-	}
-	.archived {
-		background-color: rgba(220,53,69,.15);
-    	color: #dc3545;
-		padding: 0.3em 0.45em;
-	}
-	.unassigned {
-		background-color: rgba(252,185,44,.15);
-    	color: #fcb92c;
-		padding: 0.3em 0.45em;
-	}
-</style>
-<script type="text/javascript">
-	function showFilters(){
-		document.getElementById("showFilter").style.display = 'none';
-		document.getElementById("filter").style.display = 'block';
-	}
-	function closeFilters(){
-		document.getElementById("showFilter").style.display = 'block';
-		document.getElementById("filter").style.display = 'none';
-	}
-	function searchTable() {
-    // Declare variables
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("myTable");
-    tr = table.getElementsByTagName("tr");
-  
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[3]; // Change the index to the column you want to search
-	  td2 = tr[i].getElementsByTagName("td")[4];
-	  td3 = tr[i].getElementsByTagName("td")[5];
-	  td4 = tr[i].getElementsByTagName("td")[6];
-	  td5 = tr[i].getElementsByTagName("td")[7];
-	  td6 = tr[i].getElementsByTagName("td")[8];
-	  td7 = tr[i].getElementsByTagName("td")[9];
-	  td8 = tr[i].getElementsByTagName("td")[10];
-      if (td) {
-        txtValue = (td.textContent + td2.textContent + td3.textContent + td4.textContent + td5.textContent + td6.textContent + td7.textContent + td8.textContent) || (td.innerText + td2.innerText);
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }       
-    }
-  }
-</script>
