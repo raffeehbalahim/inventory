@@ -44,10 +44,10 @@ $('.item').click(function(){
     $('#editItem #unit').val($data[3]);
     $('#editItem #serial').val($data[4]);
     $('#editItem #purchaseDate').val($data[5]);
-    $('#editItem #specs').val($data[6]);
-    $('#editItem #price').val($data[7]);
-    $('#editItem #manufacturer').val($data[8]);
-    $('#editItem #receiptId').val($data[9]);
+    $('#editItem #specs').val($data[9]);
+    $('#editItem #price').val($data[6]);
+    $('#editItem #manufacturer').val($data[7]);
+    $('#editItem #receiptId').val($data[8]);
     $('#editItem #set').val($data[1]);
     $('#editItem #set').text($data[10]);
 
@@ -163,3 +163,11 @@ function searchEmployeeTable() {
       }       
     }
 }
+
+$(document).ready( function () {
+    $('#myTable').DataTable();
+});
+
+$(document).ready( function () {
+    $('#employeeTables').DataTable();
+});

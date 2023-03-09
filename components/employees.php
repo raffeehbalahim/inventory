@@ -15,19 +15,20 @@
 							}
 						?>
 						<!--<form action="employee.php" method="post" autocomplete="off">-->
-							<input type="text" id="searchInput" onkeyup="searchEmployeeTable()" class="employee-form" placeholder="Search Employee" value="<?php echo $employee; ?>" name="employee">
+							<!--<input type="text" id="searchInput" onkeyup="searchEmployeeTable()" class="employee-form" placeholder="Search Employee" value="<?php// echo $employee; ?>" name="employee">-->
 						<!--	<button type="submit" class="btn btn-primary" name="submit">Search</button>
 						</form> -->
 						</div>
 						<a data-bs-toggle="modal" data-bs-target="#createEmployee"><label for="addEmployee">Add Employee: </label><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
-					<table id="myTable" class="table table-hover my-0">
+					<div id="employeeTable">
+					<table id="employeeTables" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<th>First Name</th>
                                 <th>Last Name</th>
 								<th>Set</th>
-								<th>Edit</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -44,7 +45,7 @@
 									$employeeId = $employee['id'];
                                     // $setID = $employees['set_id'];
 									echo '<tr>';
-										echo '<td style="display: none">' . $employeeId . '</td>';
+										//echo '<td style="display: none">' . $employeeId . '</td>';
 										echo '<td>' . $employee['firstname'] . '</td>';
 										echo '<td>' . $employee['lastname'] . '</td>';
 										
@@ -53,7 +54,7 @@
 										$bundle = mysqli_fetch_assoc($checkingAssignments);
 
 										if (mysqli_num_rows($checkingAssignments)) {
-											echo '<td style="display: none">' . $bundle['set_id'] . '</td>';
+											//echo '<td style="display: none">' . $bundle['set_id'] . '</td>';
 											echo '<td>'. $bundle['set_name'] .'</td>';
 										} else {
 											echo '<td>None</td>';
@@ -73,6 +74,7 @@
 								?>
 						</tbody>
 					</table>
+					</div>
 				</div>
 			</div>			
 		</div>

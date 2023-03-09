@@ -1,8 +1,6 @@
 <main class="content">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href="https://cdn.datatables.net/1.13.3/css/jquery.dataTables.css">
-  
-<script src="https://cdn.datatables.net/1.13.3/js/jquery.dataTables.js"></script>
+
 	<div class="container-fluid p-0">
 
 		<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
@@ -14,7 +12,7 @@
 						<h5 class="card-title mb-0">Peripherals</h5>
 						<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
-					<div class="card-header d-flex">
+					<div style="display: none!important;" class="card-header d-flex">
 						<input id="searchInput" class="employee-form" placeholder="Search" onkeyup="searchItemTable()">
 					</div>
 					<div class="filter">
@@ -79,54 +77,15 @@
 						<button type="submit" class="btn btn-primary" style="float:right" name="submit">Add Filter</button>
 					</form>
 					</div>
-					
-					<!--<form action="index.php" method="post" autocomplete="off">
-						<a class="card-title" style=" margin-right:10px;">Set: </a>
-							<div class="option-bundle">
-                            <select class="form-select mb-3" name="bundle">
-								<?php
-									#Checks if Set is Selected for Sorting
-									#Displays options for Sorting Sets
-									//if(isset($_POST['bundle'])){
-									//	$option = $_POST['bundle'];
-									//} else{
-									//	$option = 'all';
-									//}
-									//if($option == 'all'){
-									//	echo '<option value="all" selected>All</option>';
-									//} else {
-									//	echo '<option value="all">All</option>';
-									//}
-									//if($option == '0'){
-									//	echo '<option value="0" selected>No Set</option>';
-									//} else {
-									//	echo '<option value="0">No Set</option>';
-									//}
-								?>
-                                <?php
-									#Gets Set Bundle Options
-                                    //$bundles = "SELECT * FROM set_bundle"; 
-                                    //$getBundles = mysqli_query($db, $bundles);
-            
-                                    //while ($bundle = mysqli_fetch_assoc($getBundles)) {
-                                    //    if($option == $bundle['set_id']) {
-									//		echo '<option value="' . $bundle['set_id'] . '" selected>' . $bundle['set_name'] . '</option>'; 
-									//	} else {
-									//		echo '<option value="' . $bundle['set_id'] . '">' . $bundle['set_name'] . '</option>'; 
-									//	}
-                                    //}
-                                ?>
-                            </select>
-							</div>
-						<button type="submit" class="btn btn-primary" name="submit">Filter</button>
-					</form>-->
 					</div>
 					<table id="myTable" class="table table-hover my-0">
 						<thead>
 							<tr>
+								<th style="display:none">Component Id</th>
+								<th style="display:none">Set Id</th>
 								<?php
 									#Sorting Table Header
-									if(isset($_GET['sort'])){
+									/*if(isset($_GET['sort'])){
 										if($_GET['sort'] == 'brand'){
 											if($_GET['order'] == 'asc'){
 											echo '<th><a class="sort-head" href="index.php?sort=brand&order=desc">Item <i class="fa fa-sort-down"></i></a></th>';
@@ -210,19 +169,19 @@
 										}
 
 									}
-									else {
-										echo '<th><a class="sort-head" href="index.php?sort=brand&order=asc">Item</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=unit&order=asc">Unit</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=serial_number&order=asc">Serial Number</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=purchase_date&order=asc">Purchase Date</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=price&order=asc">Item Cost</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=manufacturer&order=asc">Manufacturer</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=receipt_id&order=asc">Receipt ID</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=specs&order=asc">Additional Information</a></th>';
-										echo '<th><a class="sort-head" href="index.php?sort=set_id&order=asc">Set</a></th>';
+									else {*/
+										echo '<th><a class="sort-head">Item</a></th>';
+										echo '<th><a class="sort-head"">Unit</a></th>';
+										echo '<th><a class="sort-head">Serial Number</a></th>';
+										echo '<th><a class="sort-head">Purchase Date</a></th>';
+										echo '<th><a class="sort-head">Item Cost</a></th>';
+										echo '<th><a class="sort-head">Manufacturer</a></th>';
+										echo '<th><a class="sort-head">Receipt ID</a></th>';
+										echo '<th><a class="sort-head">Additional Information</a></th>';
+										echo '<th><a class="sort-head">Set</a></th>';
 										//<!-- <th>Status</th> -->
 										
-									}
+									//}
 									echo '<th>Actions</th>';
 								?>
 							</tr>
@@ -276,7 +235,7 @@
 								if(isset($_POST['bundle'])){
 									$check = $_POST['bundle'];
 									if($check != 'all'){
-										if(isset($_GET['sort'])){
+										/*if(isset($_GET['sort'])){
 											$order = $_GET['order'];
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
@@ -291,7 +250,7 @@
 													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND serial_number = '$serial_number' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												}
 											}
-										} else {
+										} else {*/
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
 													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
@@ -305,10 +264,10 @@
 													$get_peripherals = "SELECT * FROM peripherals WHERE set_id = '$check' AND purchase_date = '$purchaseDate' AND serial_number = '$serial_number' AND  brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												}
 											}
-										}
+										//}
 										$result = mysqli_query($db, $get_peripherals);
 									} else {
-										if(isset($_GET['sort'])){
+										/*if(isset($_GET['sort'])){
 											$order = $_GET['order'];
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
@@ -323,7 +282,7 @@
 													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number' AND purchase_date = '$purchaseDate' AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%' ORDER BY $sort $order";
 												}
 											}
-										} else {
+										} else {*/
 											if($serial_number == ""){ //Checks if there is a Serial Number has a Filter
 												if($purchaseDate == ""){
 													$get_peripherals = "SELECT * FROM peripherals WHERE brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
@@ -337,16 +296,16 @@
 													$get_peripherals = "SELECT * FROM peripherals WHERE serial_number = '$serial_number'  AND brand LIKE '%$brand%' AND unit LIKE '%$unit%' AND manufacturer LIKE '%$manufacturer%' AND receipt_id LIKE '%$receiptId%'";
 												}
 											}
-										}
+										//}
 										$result = mysqli_query($db, $get_peripherals);
 									}
 								} else {
-									if(isset($_GET['sort'])){
-										$order = $_GET['order'];
-										$get_peripherals = "SELECT * FROM peripherals ORDER BY $sort $order";
-									} else {
+									//if(isset($_GET['sort'])){
+									//	$order = $_GET['order'];
+									//	$get_peripherals = "SELECT * FROM peripherals ORDER BY $sort $order";
+									//} else {
 										$get_peripherals = "SELECT * FROM peripherals";
-									}
+									//}
 									$result = mysqli_query($db, $get_peripherals);
 								}
 
@@ -412,6 +371,7 @@
 						<h5 class="card-title mb-0">Sets</h5>
 						<a data-bs-toggle="modal" data-bs-target="#createBundle"><label for="addSet">Add Set: </label><i class="align-middle me-2" data-feather="plus"></i></a>
 					</div>
+					<div id="setTable">
 					<table class="table table-hover my-0">
 						<thead>
 							<tr>
@@ -470,6 +430,7 @@
 						?>
 						</tbody>
 					</table>
+					</div>
 				</div>
 			</div>
 		</div>
