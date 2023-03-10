@@ -7,7 +7,10 @@
 			<div class="col-12 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-end">
-						<a data-bs-toggle="modal" data-bs-target="#addFile"><i class="align-middle me-2" data-feather="plus"></i></a>
+						<?php
+						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
+							echo '<a data-bs-toggle="modal" data-bs-target="#addFile"><i class="align-middle me-2" data-feather="plus"></i></a>';
+						}?>
 					</div>
 					<table class="table table-hover my-0">
 						<thead>
@@ -25,6 +28,7 @@
 									$name = $file['file_name'];
 									echo '<td>' . $name . '</td>';
 									echo '<td>' . $file['uploaded_on'] . '</td>';
+									if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 									echo '
 											<td>
 												<a href="uploads/'.$name.' " download>
@@ -34,8 +38,15 @@
 													<i class="align-middle me-2" data-feather="trash-2"></i>
 												</a>
 											</td>';
+									} else {
+										echo '
+											<td>
+												<a href="uploads/'.$name.' " download>
+													<i class="align-middle" data-feather="download"></i>
+												</a>
+											</td>';
+									}
 								}
-								//echo readfile("uploads/dpworld.png");
 							?>
 						</tbody>
 					</table>

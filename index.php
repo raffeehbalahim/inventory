@@ -1,4 +1,8 @@
-<?php include 'db/config.php'; session_start();?>
+<?php include 'db/config.php'; session_start();
+if($_SESSION["loggedin"] != true){
+	header("location: login.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

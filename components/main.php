@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<div class="container-fluid p-0">
-
 		<h1 class="h3 mb-3"><strong>Dashboard</strong></h1>
 
 		<div class="row">
@@ -10,7 +9,10 @@
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-between">
 						<h5 class="card-title mb-0">Peripherals</h5>
-						<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>
+						<?php
+						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
+							echo '<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
+						}?>
 					</div>
 					<div style="display: none!important;" class="card-header d-flex">
 						<input id="searchInput" class="employee-form" placeholder="Search" onkeyup="searchItemTable()">
@@ -94,7 +96,9 @@
 										echo '<th><a class="sort-head">Additional Information</a></th>';
 										echo '<th><a class="sort-head">Set</a></th>';
 										//<!-- <th>Status</th> -->
-									echo '<th>Actions</th>';
+									if($_SESSION["user_type"] == 1){
+										echo '<th>Actions</th>';
+									}
 								?>
 							</tr>
 						</thead>
@@ -219,7 +223,7 @@
 												echo '<td><span class="unassigned">None</span></td>';
 											}                    
 										}
-
+										if($_SESSION["user_type"] ==1){ // Checks if User is Admin
 										echo '
 											<td>
 												<a data-bs-toggle="modal" data-bs-target="#editItem" class="item" id="' . $peripherals['component_id'] . '">
@@ -230,6 +234,7 @@
 												</a>
 											</td>';
 									echo '</tr>';
+										}
 								}
 								?>
 						</tbody>
@@ -242,7 +247,10 @@
 				<div class="card flex-fill w-100">
 					<div class="card-header d-flex justify-content-between">
 						<h5 class="card-title mb-0">Sets</h5>
-						<a data-bs-toggle="modal" data-bs-target="#createBundle"><label for="addSet">Add Set: </label><i class="align-middle me-2" data-feather="plus"></i></a>
+						<?php
+						if($_SESSION["user_type"] ==1){
+							echo '<a data-bs-toggle="modal" data-bs-target="#createBundle"><label for="addSet">Add Set: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
+						} ?>
 					</div>
 					<div id="setTable">
 					<table class="table table-hover my-0">
@@ -254,7 +262,10 @@
 								<!-- Total Price Header -->
 								<th>Total Cost</th>
 								<!-- ------------------ -->
-								<th class>Actions</th>
+								<?php
+								if($_SESSION["user_type"] ==1){
+									echo '<th class>Actions</th>';
+								} ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -289,6 +300,8 @@
 									}
 									echo '<td>' . $totals['price']  . '</td>';
 									#Total Price End Here
+									
+									if($_SESSION["user_type"] ==1){
 									echo '
 									<td>
 										<a data-bs-toggle="modal" data-bs-target="#editSet" class="set">
@@ -299,6 +312,7 @@
 										</a>
 									</td>';
 								echo '</tr>';
+									}
 							}
 						?>
 						</tbody>

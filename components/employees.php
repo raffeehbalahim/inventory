@@ -14,12 +14,11 @@
 								$employee = $_POST['employee'];
 							}
 						?>
-						<!--<form action="employee.php" method="post" autocomplete="off">-->
-							<!--<input type="text" id="searchInput" onkeyup="searchEmployeeTable()" class="employee-form" placeholder="Search Employee" value="<?php// echo $employee; ?>" name="employee">-->
-						<!--	<button type="submit" class="btn btn-primary" name="submit">Search</button>
-						</form> -->
 						</div>
-						<a data-bs-toggle="modal" data-bs-target="#createEmployee"><label for="addEmployee">Add Employee: </label><i class="align-middle me-2" data-feather="plus"></i></a>
+						<?php
+						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
+							echo '<a data-bs-toggle="modal" data-bs-target="#createEmployee"><label for="addEmployee">Add Employee: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
+						} ?>
 					</div>
 					<div id="employeeTable">
 					<table id="employeeTables" class="table table-hover my-0">
@@ -28,7 +27,10 @@
 								<th>First Name</th>
                                 <th>Last Name</th>
 								<th>Set</th>
-								<th>Action</th>
+								<?php
+								if($_SESSION["user_type"] ==1){ //Checks if User is Admin
+									echo '<th>Action</th>';
+								} ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -59,7 +61,7 @@
 										} else {
 											echo '<td>None</td>';
 										}
-										
+										if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 										echo '
 											<td>
 												<a data-bs-toggle="modal" data-bs-target="#editEmployee" class="employee">
@@ -70,6 +72,7 @@
 												</a>
 											</td>';
 									echo '</tr>';
+										}
 								}
 								?>
 						</tbody>

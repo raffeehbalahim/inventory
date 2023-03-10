@@ -72,16 +72,16 @@ $('.employee').click(function(){
 
     if($data[3] == "None"){
         $('#editEmployee #none').hide();
-        $('#editEmployee #currentBundle').html($data[3]);
-        $('#editEmployee #currentBundle').val(0);
+        $('#editEmployee #currentBundle').html($data[2]);
+        $('#editEmployee #currentBundle').val(2);
     } else {
         $('#editEmployee #none').show();
-        $('#editEmployee #currentBundle').html($data[4]);
-        $('#editEmployee #currentBundle').val($data[3]);
+        $('#editEmployee #currentBundle').html($data[3]);
+        $('#editEmployee #currentBundle').val($data[2]);
     }
-    $('#editEmployee #employee').val($data[0]);
-    $('#editEmployee #firstname').val($data[1]);
-    $('#editEmployee #lastname').val($data[2]);
+    //$('#editEmployee #employee').val($data[0]);
+    $('#editEmployee #firstname').val($data[0]);
+    $('#editEmployee #lastname').val($data[1]);
 
     
 
