@@ -30,10 +30,9 @@ if($_SESSION["loggedin"] != true){
 		<div class="main">
 			<?php 
 				include './components/navbar.php';
-				include './components/file.php';
+				include './components/peripherals.php';
 				include './components/footer.php';
 				include './components/modal.php';
-
 			?>
 		</div>
 	</div>

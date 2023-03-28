@@ -2,14 +2,14 @@
     include '../db/config.php';
     
     if(isset($_GET['item'])){
-        // $item = $_GET['item'];
+         $item = $_GET['item'];
 
-        // $delete = "DELETE 
-        //     FROM peripherals 
-        //     WHERE component_id = '$item'";
-        // mysqli_query($db, $delete);
+         $delete = "DELETE 
+             FROM peripherals 
+             WHERE component_id = '$item'";
+         mysqli_query($db, $delete);
 
-        // header('location: ../index.php');
+         header('location: ../index.php');
     } else if(isset($_GET['set'])){
         echo $bundleId = $_GET['set']; 
 

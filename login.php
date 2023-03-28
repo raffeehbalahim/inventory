@@ -9,20 +9,21 @@
 	<title>Sign In | Capytech Inventory</title>
 
     <link href="styles/css/bootstrap.min.css" rel="stylesheet">
+	<link href="styles/css/main.css" rel="stylesheet">
 	<link href="styles/css/app.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<main class="d-flex w-100">
+	<main class="d-flex w-100 h-100">
 		<div class="container d-flex flex-column">
 			<div class="row vh-100">
 				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
 
-						<div class="text-center mt-4">
-							<h1 class="h2">Welcome back</h1>
-							<p class="lead">
+						<div class="text-center">
+							<h1 style="font-size: 50px;">Inventory System</h1>
+							<p class="lead mt-5">
 								Sign in to your account to continue
 							</p>
 						</div>
@@ -34,7 +35,7 @@
                         ?>
 
 						<div class="card">
-							<div class="card-body">
+							<div class="card-body card-login">
 								<div class="m-sm-4">
 									<form action="lib/login.php" method="post" autocomplete="off">
 										<div class="mb-3">

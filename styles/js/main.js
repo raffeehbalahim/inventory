@@ -27,7 +27,7 @@ $('.set').click(function(){
     // $('#editSet #empID').val($data[3]);
     
 });
-
+/*
 $('.item').click(function(){
     $tr = $(this).closest('tr');
 
@@ -60,7 +60,7 @@ $('.item').click(function(){
     
     $('#deleteItem #delete').attr('href','lib/delete.php?item='+ $data[0]);
 }); 
-
+*/
 $('.employee').click(function(){
     $tr = $(this).closest('tr');
 
@@ -163,11 +163,209 @@ function searchEmployeeTable() {
       }       
     }
 }
-
 $(document).ready( function () {
-    $('#myTable').DataTable();
+    var table = $('#myTable').DataTable();
+
+    // Add event listener for opening and closing details
+    $('#myTable tbody').on('click', 'td', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row(tr)
+ 
+        if (row.child.isShown()) {
+            //This row is already open - close it
+           row.child.hide();
+           tr.removeClass('shown');
+       }
+       table.rows().every(function() {
+           if(this.child.isShown()) {
+           // Collapse row details
+           this.child.hide();
+           $(this.node()).removeClass('parent');
+           }
+       })
+       if(row.child.hide()) {        
+           // Open this row
+           row.child(format(row.data())).show();
+           tr.addClass('shown');
+       }
+    });
 });
 
 $(document).ready( function () {
     $('#employeeTables').DataTable();
 });
+$(document).ready( function () {
+    $('#fileTable').DataTable();
+});
+
+$(document).ready( function () {
+    var table = $('#itemTable').DataTable();
+
+    // Add event listener for opening and closing details
+    $('#itemTable tbody').on('click', 'td', function () {
+            
+        var tr = $(this).closest('tr');
+        var row = table.row(tr);
+ 
+        if (row.child.isShown()) {
+             //This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        table.rows().every(function() {
+            if(this.child.isShown()) {
+            // Collapse row details
+            this.child.hide();
+            $(this.node()).removeClass('parent');
+            }
+        })
+        if(row.child.hide()) {        
+            // Open this row
+            row.child(format(row.data())).show();
+            tr.addClass('shown');
+        }
+        
+    });
+
+    var row_id = document.getElementById('searchItem').innerHTML;
+    var itemtr = document.getElementById(row_id);
+    var itemrow = table.row(itemtr);
+    if(row_id != ''){
+        itemrow.child(format(itemrow.data())).show();
+        itemtr.addClass('shown');
+    }
+});
+
+$(document).ready( function () {
+    var table = $('#setsTable').DataTable();
+
+    // Add event listener for opening and closing details
+    $('#setsTable tbody').on('click', 'td', function () {
+       
+        var tr = $(this).closest('tr');
+        var row = table.row(tr)
+ 
+        if (row.child.isShown()) {
+            //This row is already open - close it
+           row.child.hide();
+           tr.removeClass('shown');
+       }
+       table.rows().every(function() {
+           if(this.child.isShown()) {
+           // Collapse row details
+           this.child.hide();
+           $(this.node()).removeClass('parent');
+           }
+       })
+       if(row.child.hide()) {        
+           // Open this row
+           row.child(setformat(row.data())).show();
+           tr.addClass('shown');
+       }
+    });
+});
+
+function format(row) {
+    return (
+        row[12] +
+        '</div>' +
+        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<tr>' +
+        '<td>Serial Number:</td>' +
+        '<td>'+ row[4] +'</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Assignee:</td>' +
+        '<td>'+ row[10] +'</td>' +
+        '</tr>' +
+        '<tr>' +
+        '<td>Additional Information:</td>' +
+        '<td>'+ row[9] +'</td>' +
+        '</tr>' +
+        '</table>'
+    );
+}
+
+function setformat(row) {
+    return (
+        '<span>Peripherals:</span>' +
+        '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+        '<thead>' +
+        '<tr>' +
+        '<th>Unit</th>' +
+        '<th>Serial Number</th>' +
+        '<th>Receipt ID</th>' +
+        '<th>Purchase Date</th>' +
+        '<th>View</th>' +
+        '</tr>' +
+        '</thead>' +
+        '<tbody>' +
+        '<tr>' +
+        '<td>'+ row[4] +'</td>' +
+        '<td>'+ row[5] +'</td>' +
+        '<td>'+ row[6] +'</td>' +
+        '<td>'+ row[7] +'</td>' +
+        '<td>'+ row[8] +'</td>' +
+        '</tr>' +
+        '</tr>' +
+        '</tbody>' +
+        '</table>'
+    );
+}
+function editItems($id){
+    //$tr = $(this).attr('id');
+    //$tr = document.getElementById('row_'+$id);
+    //alert($tr.id);
+    //$data = $tr.children('td').map(function(){
+    //    return $(this).text();
+    //}).get();
+    $item = document.getElementById('component_id_'+$id).innerHTML;
+    $brand = document.getElementById('brand_'+$id).innerHTML;
+    $unit = document.getElementById('unit_'+$id).innerHTML;
+    $serial = document.getElementById('serial_number_'+$id).innerHTML;
+    $purchaseDate = document.getElementById('purchase_date_'+$id).innerHTML;
+    $specs = document.getElementById('specs_'+$id).innerHTML;
+    $price = document.getElementById('price_'+$id).innerHTML;
+    $manufacturer = document.getElementById('manufacturer_'+$id).innerHTML;
+    $receiptId = document.getElementById('receipt_id_'+$id).innerHTML;
+    $setVal = document.getElementById('set_id_'+$id).innerHTML;
+    $setText = document.getElementById('set_text_'+$id).innerHTML;
+    //alert($setText);
+    
+    //alert($item);
+
+    // organize->change to class 
+
+    
+
+    $('#editItem #item').val($item);
+    $('#editItem #brand').val($brand);
+    $('#editItem #unit').val($unit);
+    $('#editItem #serial').val($serial);
+    $('#editItem #purchaseDate').val($purchaseDate);
+    $('#editItem #specs').val($specs);
+    $('#editItem #price').val($price);
+    $('#editItem #manufacturer').val($manufacturer);
+    $('#editItem #receiptId').val($receiptId);
+    $('#editItem #set').val($setVal);
+    $('#editItem #set').text($setText);
+
+    $('#deleteItem #item').val($item);
+    $('#deleteItem #brand').val($brand);
+    $('#deleteItem #unit').val($unit);
+    $('#deleteItem #serial').val($serial);
+    $('#deleteItem #purchaseDate').val($purchaseDate);
+    $('#deleteItem #set').val($setVal);
+    
+    $('#deleteItem #delete').attr('href','lib/delete.php?item='+ $item);
+}; 
+
+function showItem(row_id){
+    var table = document.getElementByID('itemTable');
+    var tr = document.getElementByID(row_id);
+    //var tr = $(this).closest('tr');
+    var row = table.row(tr)
+
+    row.child(format(row.data())).show();
+    tr.addClass('shown');
+}

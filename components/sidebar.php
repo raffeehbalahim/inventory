@@ -20,6 +20,16 @@
                 </a>
 			</li>
             <li class="sidebar-item">
+				<a class="sidebar-link" href="peripherals.php">
+                    <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Peripherals</span>
+                </a>
+			</li>
+            <li class="sidebar-item">
+				<a class="sidebar-link" href="sets.php">
+                    <i class="align-middle" data-feather="package"></i> <span class="align-middle">Sets</span>
+                </a>
+			</li>
+            <li class="sidebar-item">
 				<a class="sidebar-link" href="files.php">
                     <i class="align-middle" data-feather="file"></i> <span class="align-middle">File Storage</span>
                 </a>

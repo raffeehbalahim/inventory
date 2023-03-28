@@ -32,51 +32,55 @@
              header('location: ../index.php');
          } 
         
-        // else if ($_FILES['itemFile']) {
+         else if ($_FILES['itemFile']) {
             // echo "2";
-        //     $file_extension = pathinfo($_FILES['itemFile']['name'], PATHINFO_EXTENSION);
-        //     if ($file_extension == 'csv') {
-        //         $file = fopen($_FILES['itemFile']['tmp_name'],"r"); 
+             $file_extension = pathinfo($_FILES['itemFile']['name'], PATHINFO_EXTENSION);
+             if ($file_extension == 'csv') {
+                 $file = fopen($_FILES['itemFile']['tmp_name'],"r"); 
 
-        //         # Get first column and check column format (firstname, lastname, set)
-        //         $columns = fgetcsv($file);
-        //         if ($columns[0] == 'item' && $columns[1] == 'unit' && $columns[2] == 'serial' && $columns[3] == 'date' && $columns[4] == 'set') {
-        //             while ($newItem = fgetcsv($file)) {
-        //                 # Get each column
-        //                 $item = $newItem[0];
-        //                 $unit = $newItem[1];
-        //                 $serial = $newItem[2];
-        //                 $date = date('Y-m-d', strtotime(str_replace('/', '-', $newItem[3])));;
-        //                 $set = $newItem[4];
+                 # Get first column and check column format (firstname, lastname, set)
+                 $columns = fgetcsv($file);
+                 if ($columns[0] == 'item' && $columns[1] == 'unit' && $columns[2] == 'serial' && $columns[3] == 'date' && $columns[4] == 'receipt_id' && $columns[5] == 'price' && $columns[6] == 'manufacturer' && $columns[7] == 'additional_info' && $columns[8] == 'set') {
+                     while ($newItem = fgetcsv($file)) {
+                         # Get each column
+                         $item = $newItem[0];
+                         $unit = $newItem[1];
+                         $serial = $newItem[2];
+                         $date = date('Y-m-d', strtotime(str_replace('/', '-', $newItem[3])));;
+                         $receipt_id = $newItem[4];
+                         $price = $newItem[5];
+                         $manufacturer = $newItem[6];
+                         $specs = $newItem[7];
+                         $set = $newItem[8];
                         
-        //                 # Check if set exist in db
-        //                 $check_set = "SELECT * FROM set_bundle WHERE set_name = '$set' ";
-        //                 $check_set_result = mysqli_query($db, $check_set);
+                         # Check if set exist in db
+                         $check_set = "SELECT * FROM set_bundle WHERE set_name = '$set' ";
+                         $check_set_result = mysqli_query($db, $check_set);
 
-        //                 if (mysqli_num_rows($check_set_result)) {
-        //                     # Get set ID
-        //                     $existSetRow = mysqli_fetch_assoc($check_set_result);
-        //                     $existSetid = $existSetRow['set_id'];
+                         if (mysqli_num_rows($check_set_result)) {
+                             # Get set ID
+                             $existSetRow = mysqli_fetch_assoc($check_set_result);
+                             $existSetid = $existSetRow['set_id'];
 
-        //                     $create_item = "INSERT INTO peripherals (brand, unit, serial_number, purchase_date, set_id)
-        //                     VALUES ('$item', '$unit', '$serial', '$date', '$existSetid')";
-        //                     mysqli_query($db, $create_item);
-        //                 } else {
-        //                     $create_item = "INSERT INTO peripherals (brand, unit, serial_number, purchase_date, set_id)
-        //                     VALUES ('$item', '$unit', '$serial', '$date', '0')";
-        //                     mysqli_query($db, $create_item);
-        //                 }
-        //             }
-        //             header('location: ../index.php');
-        //         } else {
-        //             # Invalid column format       
-        //             header('location: ../index.php');
-        //         }
-        //     } else {
-        //         # If file is not csv
-        //         header('location: ../index.php');
-        //     }
-        // }
+                             $create_item = "INSERT INTO peripherals (brand, unit, serial_number, specs, price, manufacturer, purchase_date, receipt_id, set_id)
+                             VALUES ('$item', '$unit', '$serial', '$specs', '$price', '$manufacturer', '$date', '$receipt_id', '$existSetid')";
+                             mysqli_query($db, $create_item);
+                         } else {
+                             $create_item = "INSERT INTO peripherals (brand, unit, serial_number, specs, price, manufacturer, purchase_date, receipt_id, set_id)
+                             VALUES ('$item', '$unit', '$serial', '$specs', '$price', '$manufacturer', '$date', '$receipt_id', '0')";
+                             mysqli_query($db, $create_item);
+                         }
+                     }
+                     header('location: ../index.php');
+                 } else {
+                     # Invalid column format       
+                     header('location: ../index.php');
+                 }
+             } else {
+                 # If file is not csv
+                 header('location: ../index.php');
+             }
+         }
     } else if(isset($_POST['createBundle'])){
         # Create set
         $bundle = $_POST['newBundle'];
@@ -91,7 +95,7 @@
             $createBundle = "INSERT INTO set_bundle (set_name)
                 VALUES ('$bundle')";
             mysqli_query($db, $createBundle);
-            header('location: ../index.php');
+            header('location: ../sets.php');
         }
     } else if(isset($_POST['createEmployee'])){
         # Create employee

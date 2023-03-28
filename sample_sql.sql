@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 10:46 AM
+-- Generation Time: Mar 28, 2023 at 10:49 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -39,6 +39,18 @@ CREATE TABLE `employees` (
 -- Dumping data for table `employees`
 --
 
+INSERT INTO `employees` (`id`, `firstname`, `lastname`, `set_id`) VALUES
+(2, 'John', 'Doe', 0),
+(3, 'George', 'Mikan', 0),
+(4, 'Gregory', 'Del Pilar', 4),
+(5, 'Jacky', 'Lin', 0),
+(6, 'Cidney', 'Austria', 0),
+(8, 'John1', 'Doe', 0),
+(9, 'John2', 'Doe', 0),
+(10, 'John3', 'Doe', 0),
+(11, 'John4', 'Doe', 0),
+(12, 'John5', 'Doe', 0),
+(13, 'John6', 'Doe', 0);
 
 -- --------------------------------------------------------
 
@@ -56,6 +68,8 @@ CREATE TABLE `files` (
 -- Dumping data for table `files`
 --
 
+INSERT INTO `files` (`id`, `file_name`, `uploaded_on`) VALUES
+(3, 'dpworld.png', '2023-03-08 11:19:24');
 
 -- --------------------------------------------------------
 
@@ -80,6 +94,13 @@ CREATE TABLE `peripherals` (
 -- Dumping data for table `peripherals`
 --
 
+INSERT INTO `peripherals` (`component_id`, `brand`, `unit`, `serial_number`, `specs`, `price`, `manufacturer`, `purchase_date`, `receipt_id`, `set_id`) VALUES
+(1, 'Brand', 'Unit', 123, '1231231', 200, 'Cappy', '2023-02-01', 1124, 3),
+(2, 'Brand', 'Name', 111, 'Specs4', 500, '123', '2023-12-31', 3321, 2),
+(3, 'Item', 'Item', 110011, 'Specs', 250, 'Capy', '2023-03-14', 2231, 2),
+(4, 'Item2', 'Item2', 110012, 'Sp3', 240, 'Capyy', '2022-12-31', 1133, 0),
+(5, 'Item3', 'Unit3', 110013, 'Sp3', 100, 'Capy2', '2022-11-28', 2223, 4);
+
 -- --------------------------------------------------------
 
 --
@@ -94,6 +115,12 @@ CREATE TABLE `set_bundle` (
 --
 -- Dumping data for table `set_bundle`
 --
+
+INSERT INTO `set_bundle` (`set_id`, `set_name`) VALUES
+(1, 'Archived'),
+(2, 'Set2'),
+(3, 'set3'),
+(4, 'Set4');
 
 -- --------------------------------------------------------
 
@@ -161,25 +188,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `employees`
 --
 ALTER TABLE `employees`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `peripherals`
 --
 ALTER TABLE `peripherals`
-  MODIFY `component_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `component_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `set_bundle`
 --
 ALTER TABLE `set_bundle`
-  MODIFY `set_id` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `set_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`

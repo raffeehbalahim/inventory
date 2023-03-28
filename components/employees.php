@@ -20,7 +20,7 @@
 							echo '<a data-bs-toggle="modal" data-bs-target="#createEmployee"><label for="addEmployee">Add Employee: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
 						} ?>
 					</div>
-					<div id="employeeTable">
+					
 					<table id="employeeTables" class="table table-hover my-0">
 						<thead>
 							<tr>
@@ -77,7 +77,7 @@
 								?>
 						</tbody>
 					</table>
-					</div>
+					
 				</div>
 			</div>			
 		</div>

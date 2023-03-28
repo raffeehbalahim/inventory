@@ -72,10 +72,10 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Specs" name="specs">
+                            <input type="number" class="form-control" placeholder="Receipt ID" name="receiptId">
                         </div>
                         <div class="col">
-                        <input type="number" class="form-control" placeholder="Item Cost" name="price">
+                            <input type="number" class="form-control" placeholder="Item Cost" name="price">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -83,7 +83,7 @@
                             <input type="text" class="form-control" placeholder="Manufacturer" name="manufacturer">
                         </div>
                         <div class="col">
-                        <input type="number" class="form-control" placeholder="Receipt ID" name="receiptId">
+                            <input type="text" class="form-control" placeholder="Additional Info" name="specs">
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -201,8 +201,8 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col">
-                            <input required type="text" class="form-control" placeholder="Specs" name="specs" id="specs">
+                    <div class="col">
+                            <input required type="number" class="form-control" placeholder="Receipt ID" name="receiptId" id="receiptId">
                         </div>
                         <div class="col">
                             <input required type="number" class="form-control" placeholder="Item Cost" name="price" id="price">
@@ -213,13 +213,13 @@
                             <input required type="text" class="form-control" placeholder="Manufacturer" name="manufacturer" id="manufacturer">
                         </div>
                         <div class="col">
-                            <input required type="number" class="form-control" placeholder="Receipt ID" name="receiptId" id="receiptId">
+                            <input required type="text" class="form-control" placeholder="Additional Info" name="specs" id="specs">
                         </div>
                     </div>
                     <div class="row mb-3">
                         <div class="col-auto">
                             <select required class="form-select" name="set">
-                                <!--<option selected id="set"></option> -->
+                                <option selected id="set"></option>
                                 <?php
 
                                     $get_sets = "SELECT * FROM set_bundle";
