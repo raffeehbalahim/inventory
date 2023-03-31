@@ -79,5 +79,16 @@
         mysqli_query($db, $updateEmployee);
 
         header('location: ../employee.php');
-    }   
+    } else if(isset($_POST['submitAssignItem'])){
+        $item = $_POST['item'];
+        $set = $_POST['set']; 
+        
+        # Update item information
+        $update_setItem = "UPDATE peripherals 
+            SET set_id = '$set'
+            WHERE component_id = '$item'";
+        mysqli_query($db, $update_setItem);
+        header('location: ../index.php');
+    }
+    
 ?>

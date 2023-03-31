@@ -15,11 +15,6 @@
                 </a>
             </li>
             <li class="sidebar-item">
-				<a class="sidebar-link" href="employee.php">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Employees</span>
-                </a>
-			</li>
-            <li class="sidebar-item">
 				<a class="sidebar-link" href="peripherals.php">
                     <i class="align-middle" data-feather="clipboard"></i> <span class="align-middle">Peripherals</span>
                 </a>
@@ -27,6 +22,11 @@
             <li class="sidebar-item">
 				<a class="sidebar-link" href="sets.php">
                     <i class="align-middle" data-feather="package"></i> <span class="align-middle">Sets</span>
+                </a>
+			</li>
+            <li class="sidebar-item">
+				<a class="sidebar-link" href="employee.php">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Employees</span>
                 </a>
 			</li>
             <li class="sidebar-item">

@@ -451,3 +451,49 @@
 		</div>
 	</div>
 </div>
+
+<!-- Assign Item -->
+<div class="modal fade" id="assignItem" tabindex="-1"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <form action="lib/update.php" method="post" autocomplete="off">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Assign item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="item" id="item">
+                    <div class="row mb-2">
+                        <div class="col">
+                            <input required type="text" class="form-control" placeholder="Unit Name" name="unit" id="unit" disabled>
+                        </div>
+                        <div class="col">
+                            <input required type="number" class="form-control" placeholder="Serial Number" name="serial" id="serial" disabled>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-auto">
+                            <select required class="form-select" name="set">
+                                <option selected id="set"></option>
+                                <?php
+
+                                    $get_sets = "SELECT * FROM set_bundle";
+                                    $result = mysqli_query($db, $get_sets);
+            
+                                    while ($set = mysqli_fetch_assoc($result)) {
+                                        echo '<option value="' . $set['set_id'] . '">' . $set['set_name'] . '</option>';
+                                    }  
+                                ?>
+                                <option value="0">None</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="submitAssignItem" value="Save">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>

@@ -169,7 +169,7 @@ $(document).ready( function () {
     });
 
     // Add event listener for opening and closing details
-    $('#myTable tbody').on('click', 'td', function () {
+    /*$('#myTable tbody').on('click', 'td', function () {
         var tr = $(this).closest('tr');
         var row = table.row(tr)
  
@@ -190,7 +190,7 @@ $(document).ready( function () {
            row.child(format(row.data())).show();
            tr.addClass('shown');
        }
-    });
+    });*/
 });
 
 $(document).ready( function () {
@@ -369,6 +369,12 @@ function editItems($id){
     $('#deleteItem #set').val($setVal);
     
     $('#deleteItem #delete').attr('href','lib/delete.php?item='+ $item);
+
+    $('#assignItem #item').val($item);
+    $('#assignItem #unit').val($unit);
+    $('#assignItem #serial').val($serial);
+    $('#assignItem #set').val($setVal);
+    $('#assignItem #set').text($setText);
 }; 
 
 function showItem(row_id){

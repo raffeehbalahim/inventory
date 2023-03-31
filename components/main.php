@@ -11,7 +11,7 @@
 						<h5 class="card-title mb-0">Peripherals</h5>
 						<?php
 						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
-							echo '<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
+							echo '<a data-bs-toggle="modal" style="display: none!important;" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
 						}?>
 					</div>
 					<div style="display: none!important;" class="card-header d-flex">
@@ -100,7 +100,7 @@
 										echo '<th><a class="sort-head">Set</a></th>';
 										//<!-- <th>Status</th> -->
 									//if($_SESSION["user_type"] == 1){
-										echo '<th style="display:none">Actions</th>';
+										echo '<th>Actions</th>';
 									//}
 								?>
 							</tr>
@@ -225,7 +225,7 @@
 
 
 										if($set == 0) {
-											echo '<td><span class="unassigned">None</span></td>';
+											echo '<td><span id="set_text_' . $peripherals['component_id'] . '" class="unassigned">None</span></td>';
 										} else {
 											$get_setID = "SELECT *
 											FROM set_bundle 
@@ -248,10 +248,12 @@
 										}
 										if($_SESSION["user_type"] ==1){ // Checks if User is Admin
 										echo '
-											<td style="display:none">
-											<div class="d-flex justify-content-end action"><label style="margin-right: 10px">Actions: </label>
+											<td >
 												<a style="margin-right: 10px" href="peripherals.php?item=row_'. $peripherals['component_id'] .'" id="' . $peripherals['component_id'] . '">
 													<i class="align-middle" data-feather="eye"></i>
+												</a>
+												<a style="margin-right: 10px" data-bs-toggle="modal" data-bs-target="#assignItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')">
+													<i class="align-middle" data-feather="user-plus"></i>
 												</a>
 												<a href="" data-bs-toggle="modal" data-bs-target="#deleteItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
