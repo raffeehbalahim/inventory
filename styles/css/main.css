@@ -159,6 +159,22 @@ th {
     padding: .5rem 1.25rem;
 }
 
-.card {
-    overflow: auto!important;
+@media screen and (max-width: 640px){
+    .filter, .filter .d-flex {
+        display: inline-flex;
+    }
+    #itemTable_length, #itemTable_filter, #itemTable_filter label {
+     width: 100%;
+     padding: 0!important;
+     display: flex;
+    }
+    #itemTable_filter label input {
+        display: inline-flex;
+        width: 100%;
+    }
+    td .action {
+        float: none!important;
+        
+        display: block!important;
+    }
 }

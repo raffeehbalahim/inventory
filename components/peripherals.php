@@ -81,7 +81,8 @@
 					</form>
 					</div>
 					</div>
-					<table id="itemTable" class="table table-hover my-0">
+					<div class="table-wrap" >
+					<table id="itemTable" style="width: 100%; height: 100%" class="table table-hover my-0 display nowrap">
 						<thead>
 							<tr>
 								<th style="display:none">Component Id</th>
@@ -247,7 +248,7 @@
 										if($_SESSION["user_type"] ==1){ // Checks if User is Admin
 										echo '
 											<td style="display:none">
-											<div class="d-flex justify-content-end"><label style="margin-right: 10px">Actions: </label>
+											<div class="d-flex justify-content-end action"><label style="margin-right: 10px">Actions: </label>
 												<a data-bs-toggle="modal" style="margin-right: 10px" data-bs-target="#editItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')" id="' . $peripherals['component_id'] . '">
 													<i class="align-middle" data-feather="edit-2"></i>
 												</a>
@@ -263,6 +264,7 @@
 								?>
 						</tbody>
 					</table>
+							</div>
 				</div>
 			</div>
 			<?php

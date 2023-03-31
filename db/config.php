@@ -1,7 +1,7 @@
 <?php
 define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
+define('DB_PASSWORD', 'Capytech!2023');
 define('DB_NAME', 'capy_hr_inventory');
  
 /* Attempt to connect to MySQL database */

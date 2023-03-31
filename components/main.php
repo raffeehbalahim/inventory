@@ -82,7 +82,7 @@
 					</form>
 					</div>
 					</div>
-					<table id="myTable" class="table table-hover my-0">
+					<table id="myTable" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<th style="display:none">Component Id</th>
@@ -249,7 +249,7 @@
 										if($_SESSION["user_type"] ==1){ // Checks if User is Admin
 										echo '
 											<td style="display:none">
-											<div class="d-flex justify-content-end"><label style="margin-right: 10px">Actions: </label>
+											<div class="d-flex justify-content-end action"><label style="margin-right: 10px">Actions: </label>
 												<a style="margin-right: 10px" href="peripherals.php?item=row_'. $peripherals['component_id'] .'" id="' . $peripherals['component_id'] . '">
 													<i class="align-middle" data-feather="eye"></i>
 												</a>

@@ -39,7 +39,7 @@
 								<div class="m-sm-4">
 									<form action="lib/login.php" method="post" autocomplete="off">
 										<div class="mb-3">
-											<label class="form-label">Username</label>
+											<label class="form-label" style="color: blue">Username</label>
 											<input type="text" name="username" placeholder="Enter your username" class="form-control-lg form-control <?php echo (!empty($_SESSION["username_err"])) ? 'is-invalid' : ''; ?>">
                                             <span class="invalid-feedback"><?php echo $_SESSION["username_err"]; ?></span>
 										</div>

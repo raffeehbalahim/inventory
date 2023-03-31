@@ -164,7 +164,9 @@ function searchEmployeeTable() {
     }
 }
 $(document).ready( function () {
-    var table = $('#myTable').DataTable();
+    var table = $('#myTable').DataTable({
+        scrollX: true,
+    });
 
     // Add event listener for opening and closing details
     $('#myTable tbody').on('click', 'td', function () {
@@ -192,14 +194,21 @@ $(document).ready( function () {
 });
 
 $(document).ready( function () {
-    $('#employeeTables').DataTable();
+    $('#employeeTables').DataTable({
+        scrollX: true,
+    });
 });
 $(document).ready( function () {
-    $('#fileTable').DataTable();
+    $('#fileTable').DataTable({
+        scrollX: true,
+    });
 });
 
 $(document).ready( function () {
-    var table = $('#itemTable').DataTable();
+    var table = $('#itemTable').DataTable({
+        scrollX: true,
+    });
+    
 
     // Add event listener for opening and closing details
     $('#itemTable tbody').on('click', 'td', function () {
@@ -237,7 +246,9 @@ $(document).ready( function () {
 });
 
 $(document).ready( function () {
-    var table = $('#setsTable').DataTable();
+    var table = $('#setsTable').DataTable({
+        scrollX: true,
+    });
 
     // Add event listener for opening and closing details
     $('#setsTable tbody').on('click', 'td', function () {

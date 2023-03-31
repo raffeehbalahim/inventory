@@ -15,7 +15,7 @@
 						} ?>
 					</div>
 					<div id="setTable">
-					<table id="setsTable" class="table table-hover my-0">
+					<table id="setsTable" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr><th style="display:none" class="col-2">id</th>
 								<th class="col-2">Set</th>
@@ -79,11 +79,11 @@
 									if(mysqli_num_rows($getPeripherals)){
 										while ($peripheral = mysqli_fetch_assoc($getPeripherals)) {
 											$i++;
-											$receipt = $receipt . $peripheral['receipt_id']. "<br>";
-											$unit = $unit . $peripheral['unit']. "<br>";
-											$serial = $serial . $peripheral['serial_number']. "<br>";
-											$purchase_date = $purchase_date . $peripheral['purchase_date']. "<br>";
-											$actions = $actions . '<a href="peripherals.php?item=row_'. $peripheral['component_id'] .'">View</i></a><br>';
+											$receipt = $receipt . $peripheral['receipt_id']. "<br><br>";
+											$unit = $unit . $peripheral['unit']. "<br><br>";
+											$serial = $serial . $peripheral['serial_number']. "<br><br>";
+											$purchase_date = $purchase_date . $peripheral['purchase_date']. "<br><br>";
+											$actions = $actions . '<a href="peripherals.php?item=row_'. $peripheral['component_id'] .'"><i class="align-middle" data-feather="eye"></i></a><br><br>';
 											$item = $item . "<tr><td>" . $peripheral['unit'] . "</td><td>" . $peripheral['serial_number'] . "</td><td>" . $peripheral['receipt_id'] . "</td><td>" . $peripheral['purchase_date'] . "</td></tr>";
 										}
 										echo '<td style="display: none">' . $unit . '</td>';

@@ -21,7 +21,7 @@
 						} ?>
 					</div>
 					
-					<table id="employeeTables" class="table table-hover my-0">
+					<table id="employeeTables" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<th>First Name</th>

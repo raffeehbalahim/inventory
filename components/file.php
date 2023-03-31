@@ -12,7 +12,7 @@
 							echo '<a data-bs-toggle="modal" data-bs-target="#addFile"><i class="align-middle me-2" data-feather="plus"></i></a>';
 						}?>
 					</div>
-					<table id="fileTable" class="table table-hover my-0">
+					<table id="fileTable" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<th>File Name</th>
