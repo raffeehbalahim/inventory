@@ -1,13 +1,15 @@
 <main class="content">
 	<div class="container-fluid p-0">
-
+		<div class="d-flex justify-content-between">
 		<h1 class="h3 mb-3"><strong>Employees</strong></h1>
+			<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#createEmployee"><i class="align-middle me-2" data-feather="plus"></i><label for="addEmployee">Add Employee</label></a></button>
+		</div>
 
 		<div class="row">
 			<div class="col-12 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-between">
-						<div style="display: inline;">
+						<!--<div style="display: inline;">
 						<?php
 							$employee = "";
 							if(isset($_POST['employee'])){
@@ -18,7 +20,7 @@
 						<?php
 						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 							echo '<a data-bs-toggle="modal" data-bs-target="#createEmployee"><label for="addEmployee">Add Employee: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
-						} ?>
+						} ?>-->
 					</div>
 					
 					<table id="employeeTables" style="width: 100%" class="table table-hover my-0">

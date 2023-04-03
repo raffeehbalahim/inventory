@@ -19,6 +19,7 @@ if($_SESSION["loggedin"] != true){
 	<script src="styles/js/jquery.js"></script>
 	<link href="DataTables/datatables.min.css" rel="stylesheet"/>
  
+	<script src="DataTables/dataTables.fixedHeader.min.js"></script>
 	<script src="DataTables/datatables.min.js"></script>
 </head>
 

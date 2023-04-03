@@ -2,16 +2,20 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<div class="container-fluid p-0">
-
+		<div class="d-flex justify-content-between">
+			<h1 class="h3 mb-3"><strong>Peripherals</strong></h1>
+			<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#createItem"><i class="align-middle me-2" data-feather="plus"></i><label for="addItem">Add Item</label></a></button>
+		</div>
 		<div class="row">
 			<div class="col-12 d-flex">
 				<div class="card flex-fill">
+					
 					<div class="card-header d-flex justify-content-between">
-						<h5 class="card-title mb-0">Peripherals</h5>
+						<!--<h5 class="card-title mb-0">Peripherals</h5>
 						<?php
 						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 							echo '<a data-bs-toggle="modal" data-bs-target="#createItem"><label for="addItem">Add Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
-						}?>
+						}?>-->
 					</div>
 					<div style="display: none!important;" class="card-header d-flex">
 						<input id="searchInput" class="employee-form" placeholder="Search" onkeyup="searchItemTable()">
@@ -20,7 +24,7 @@
 					<div class="d-flex justify-content-end">
 					<div id="showFilter">
 						<label for="inputFirstname">Filter: </label>
-						<button class="btn btn-primary" onclick="showFilters()">Show More</button>
+						<a onclick="showFilters()"></a>
 					</div>
 					</div>
 					<div class="filter-option" id="filter">
@@ -31,31 +35,31 @@
 							</div>
 							<div class="option-bundle">
 								<div class="row mb-3">
-                        			<div class="col">
+                        			<div class="col-md-6">
 										<input type="text" class="form-control" placeholder="Item" value="" name="brand">
 									</div>
-									<div class="col">
+									<div class="col-md-6">
 										<input type="text" class="form-control" placeholder="Unit" value="" name="unit">
 									</div>
 								</div>	
 								<div class="row mb-3">
-                        			<div class="col">
+                        			<div class="col-md-6">
 										<input type="number" class="form-control" placeholder="Serial Number" value="" name="serial_number">
 									</div>
-									<div class="col">
+									<div class="col-md-6">
 										<input type="text" class="form-control" placeholder="Manufacturer" value="" name="manufacturer">
 									</div>
 								</div>
 								<div class="row mb-3">
-									<div class="col">
+									<div class="col-md-6">
 										<input type="date" class="form-control" name="purchaseDate">
 									</div>
-									<div class="col">
+									<div class="col-md-6">
 										<input type="text" class="form-control" placeholder="Receipt ID" value="" name="receiptId">
 									</div>
 								</div>		
 								<div class="row mb-3">
-									<div class="col">
+									<div class="col-md-6">
 									<select class="form-select mb-3" name="bundle">
 										<?php
 										#Displays options for Sorting Sets
@@ -224,7 +228,7 @@
 
 
 										if($set == 0) {
-											echo '<td><span class="unassigned" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
+											echo '<td><span class="badge bg-warning my-2" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
 										} else {
 											$get_setID = "SELECT *
 											FROM set_bundle 
@@ -236,13 +240,13 @@
 												while ($set = mysqli_fetch_assoc($result_set)) {
 													$set = $set['set_name'];
 													if($set == "Archived"){
-														echo '<td><span class="archived" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
+														echo '<td><span class="badge bg-danger my-2" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
 													} else {
-														echo '<td><span class="assigned" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
+														echo '<td><span class="badge bg-success my-2" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
 													}
 												}
 											} else {
-												echo '<td><span class="unassigned" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
+												echo '<td><span class="badge bg-warning my-2" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
 											}                    
 										}
 										if($_SESSION["user_type"] ==1){ // Checks if User is Admin

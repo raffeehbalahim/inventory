@@ -2,17 +2,22 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	<div class="container-fluid p-0">
+		<div class="d-flex justify-content-between">
+			<h1 class="h3 mb-3"><strong>Sets</strong></h1>
+			<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#createBundle"><i class="align-middle me-2" data-feather="plus"></i><label for="addSet">Add Set</label></a></button>
+		</div>
 
 		<div class="row">
 			<div class="col-12 d-flex">
 				
 				<div class="card flex-fill w-100">
 					<div class="card-header d-flex justify-content-between">
+						<!--
 						<h5 class="card-title mb-0">Sets</h5>
 						<?php
 						if($_SESSION["user_type"] ==1){
 							echo '<a data-bs-toggle="modal" data-bs-target="#createBundle"><label for="addSet">Add Set: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
-						} ?>
+						} ?>-->
 					</div>
 					<div id="setTable">
 					<table id="setsTable" style="width: 100%" class="table table-hover my-0">

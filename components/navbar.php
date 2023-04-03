@@ -143,7 +143,7 @@
 				</a>
 
 				<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-					<img src="styles/img/avatars/avatar.jpg" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $_SESSION['username'];?></span>
+					<img src="styles/img/avatars/capybara.png" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark"><?php echo $_SESSION['username'];?></span>
 				</a>
 				<div class="dropdown-menu dropdown-menu-end">
 					<a class="dropdown-item" href="pages-profile.html"><i class="align-middle me-1" data-feather="user"></i> Profile</a>

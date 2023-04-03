@@ -178,3 +178,27 @@ th {
         display: block!important;
     }
 }
+
+#showFilter a:before {
+    content: "";
+    margin-left: 0.255em;
+    vertical-align: 0.255em;
+    border: solid;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(45deg);
+}
+
+@media screen and (min-width: 640px){
+.dataTables_info, .dataTables_paginate {
+    position: absolute;
+    bottom: 8px;
+}
+.dataTables_wrapper {
+    height: 100%;
+}
+.dataTables_paginate {
+    right: 20px;
+}
+}

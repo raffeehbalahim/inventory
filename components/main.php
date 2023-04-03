@@ -21,7 +21,7 @@
 					<div class="d-flex justify-content-end">
 					<div id="showFilter">
 						<label for="inputFirstname">Filter: </label>
-						<button class="btn btn-primary" onclick="showFilters()">Show More</button>
+						<a onclick="showFilters()"></a>
 					</div>
 					</div>
 					<div class="filter-option" id="filter">
@@ -225,7 +225,7 @@
 
 
 										if($set == 0) {
-											echo '<td><span id="set_text_' . $peripherals['component_id'] . '" class="unassigned">None</span></td>';
+											echo '<td><span id="set_text_' . $peripherals['component_id'] . '" class="badge bg-warning my-2">None</span></td>';
 										} else {
 											$get_setID = "SELECT *
 											FROM set_bundle 
@@ -237,13 +237,13 @@
 												while ($set = mysqli_fetch_assoc($result_set)) {
 													$set = $set['set_name'];
 													if($set == "Archived"){
-														echo '<td><span class="archived" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
+														echo '<td><span class="badge bg-danger my-2" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
 													} else {
-														echo '<td><span class="assigned" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
+														echo '<td><span class="badge bg-success my-2" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
 													}
 												}
 											} else {
-												echo '<td><span class="unassigned" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
+												echo '<td><span class="badge bg-warning my-2" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
 											}                    
 										}
 										if($_SESSION["user_type"] ==1){ // Checks if User is Admin

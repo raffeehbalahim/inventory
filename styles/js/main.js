@@ -195,7 +195,9 @@ $(document).ready( function () {
 
 $(document).ready( function () {
     $('#employeeTables').DataTable({
-        scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
     });
 });
 $(document).ready( function () {
