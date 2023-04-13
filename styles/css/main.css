@@ -189,8 +189,15 @@ th {
     padding: 2px;
     transform: rotate(45deg);
 }
-
+/*
 @media screen and (min-width: 640px){
+    .dataTables_scroll {
+        height: calc(100% - 100px)!important;
+    }
+    .dataTables_scrollBody{
+        height: 98%!important;
+    }
+
 .dataTables_info, .dataTables_paginate {
     position: absolute;
     bottom: 8px;
@@ -201,4 +208,31 @@ th {
 .dataTables_paginate {
     right: 20px;
 }
+}*/
+#action:before, #action:after{
+    display:none;
+}
+ 
+div.slider {
+    display:none;
+}
+ 
+table.dataTable tbody td.no-padding {
+    padding: 0;
+}
+
+@media screen and (min-width: 835px){
+
+#employeeTables_wrapper, #myTable_wrapper, #itemTable_wrapper {
+    margin-bottom: 50px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+}
+}
+#footer {
+    padding: 8px 20px;
 }

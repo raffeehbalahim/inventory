@@ -17,7 +17,7 @@
 							<tr>
 								<th>File Name</th>
 								<th>Date Added</th>
-								<th>Actions</th>
+								<th id="action">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -31,17 +31,17 @@
 									if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 									echo '
 											<td>
-												<a href="uploads/'.$name.' " download>
+												<a title="Download" href="uploads/'.$name.' " download>
 													<i class="align-middle" data-feather="download"></i>
 												</a>
-												<a href="">
+												<a title="Delete" href="">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
 												</a>
 											</td>';
 									} else {
 										echo '
 											<td>
-												<a href="uploads/'.$name.' " download>
+												<a title="Download" href="uploads/'.$name.' " download>
 													<i class="align-middle" data-feather="download"></i>
 												</a>
 											</td>';
@@ -50,6 +50,8 @@
 							?>
 						</tbody>
 					</table>
+					<div id="footer" class="dataTables_wrapper">
+					</div>
 				</div>
 			</div>			
 		</div>

@@ -85,7 +85,6 @@
 					</form>
 					</div>
 					</div>
-					<div class="table-wrap" >
 					<table id="itemTable" style="width: 100%; height: 100%" class="table table-hover my-0 display nowrap">
 						<thead>
 							<tr>
@@ -253,12 +252,13 @@
 										echo '
 											<td style="display:none">
 											<div class="d-flex justify-content-end action"><label style="margin-right: 10px">Actions: </label>
-												<a data-bs-toggle="modal" style="margin-right: 10px" data-bs-target="#editItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')" id="' . $peripherals['component_id'] . '">
+												<a title="Edit" data-bs-toggle="modal" style="margin-right: 10px" data-bs-target="#editItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')" id="' . $peripherals['component_id'] . '">
 													<i class="align-middle" data-feather="edit-2"></i>
 												</a>
-												<a href="" data-bs-toggle="modal"  style="margin-right: 30px" data-bs-target="#deleteItem" onclick="editItems(' . $peripherals['component_id'] . ')" class="item">
+												<a title="Delete" href="" data-bs-toggle="modal"  style="margin-right: 30px" data-bs-target="#deleteItem" onclick="editItems(' . $peripherals['component_id'] . ')" class="item">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
 												</a>
+											</div>
 											</td>';
 										} else {
 											echo '<td style="display:none"></td>';
@@ -268,7 +268,8 @@
 								?>
 						</tbody>
 					</table>
-							</div>
+					<div id="footer" class="dataTables_wrapper">
+					</div>
 				</div>
 			</div>
 			<?php

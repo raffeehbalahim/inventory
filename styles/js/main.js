@@ -166,7 +166,13 @@ function searchEmployeeTable() {
 $(document).ready( function () {
     var table = $('#myTable').DataTable({
         scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
     });
+    //Adding Pagination and Page Info into Footer
+    $("#myTable_info").detach().appendTo('#footer');
+    $("#myTable_paginate").detach().appendTo('#footer');
 
     // Add event listener for opening and closing details
     /*$('#myTable tbody').on('click', 'td', function () {
@@ -195,21 +201,37 @@ $(document).ready( function () {
 
 $(document).ready( function () {
     $('#employeeTables').DataTable({
+        scrollX: true,
         fixedHeader: {
             header: true,
         }
     });
+    //Adding Pagination and Page Info into Footer
+    $("#employeeTables_info").detach().appendTo('#footer');
+    $("#employeeTables_paginate").detach().appendTo('#footer');
 });
 $(document).ready( function () {
     $('#fileTable').DataTable({
         scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
     });
+    //Adding Pagination and Page Info into Footer
+    $("#fileTable_info").detach().appendTo('#footer');
+    $("#fileTable_paginate").detach().appendTo('#footer');
 });
 
 $(document).ready( function () {
     var table = $('#itemTable').DataTable({
         scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
     });
+    //Adding Pagination and Page Info into Footer
+    $("#itemTable_info").detach().appendTo('#footer');
+    $("#itemTable_paginate").detach().appendTo('#footer');
     
 
     // Add event listener for opening and closing details
@@ -219,38 +241,52 @@ $(document).ready( function () {
         var row = table.row(tr);
  
         if (row.child.isShown()) {
-             //This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
+            //This row is already open - close it
+            $('div.slider', row.child()).slideUp(function () {
+                row.child.hide();
+                tr.removeClass('shown');
+            });
         }
-        table.rows().every(function() {
+        /*table.rows().every(function() {
             if(this.child.isShown()) {
             // Collapse row details
-            this.child.hide();
-            $(this.node()).removeClass('parent');
+                $('div.slider', this.child()).slideUp(function () {
+                    this.child.hide();
+                    $(this.node()).removeClass('parent');
+                });
             }
-        })
+        });*/ else {
         if(row.child.hide()) {        
             // Open this row
-            row.child(format(row.data())).show();
+            row.child(format(row.data()), 'no-padding').show();
             tr.addClass('shown');
-        }
+            $('div.slider', row.child()).slideDown();
+        }}
         
     });
-
+    //Open Accordion Selected From Set Page
     var row_id = document.getElementById('searchItem').innerHTML;
     var itemtr = document.getElementById(row_id);
     var itemrow = table.row(itemtr);
-    if(row_id != ''){
-        itemrow.child(format(itemrow.data())).show();
-        itemtr.addClass('shown');
+    if(row_id != ''){ 
+            itemrow.child(format(itemrow.data()), 'no-padding').show();
+            $('div.slider', itemrow.child()).slideDown();
+            itemtr.addClass('shown');
+            
     }
 });
 
 $(document).ready( function () {
     var table = $('#setsTable').DataTable({
         scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
     });
+    //Adding Pagination and Page Info into Footer
+    $("#setsTable_info").detach().appendTo('#footer');
+    $("#setsTable_paginate").detach().appendTo('#footer');
+    
 
     // Add event listener for opening and closing details
     $('#setsTable tbody').on('click', 'td', function () {
@@ -280,8 +316,8 @@ $(document).ready( function () {
 
 function format(row) {
     return (
+        '<div class="slider">'+
         row[12] +
-        '</div>' +
         '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
         '<td>Serial Number:</td>' +
@@ -295,7 +331,8 @@ function format(row) {
         '<td>Additional Information:</td>' +
         '<td>'+ row[9] +'</td>' +
         '</tr>' +
-        '</table>'
+        '</table>'+
+        '</div>' 
     );
 }
 
@@ -388,3 +425,10 @@ function showItem(row_id){
     row.child(format(row.data())).show();
     tr.addClass('shown');
 }
+$(document).ready( function () {
+$(".updateTooltip").hover(function(){
+    $(".showupdateTooltip").css("visibility", "visible");
+},function(){
+    $(".showupdateTooltip").css("visibility", "hidden");
+});
+});

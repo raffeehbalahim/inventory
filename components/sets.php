@@ -19,7 +19,6 @@
 							echo '<a data-bs-toggle="modal" data-bs-target="#createBundle"><label for="addSet">Add Set: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
 						} ?>-->
 					</div>
-					<div id="setTable">
 					<table id="setsTable" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr><th style="display:none" class="col-2">id</th>
@@ -36,7 +35,7 @@
 								<!-- ------------------ -->
 								<?php
 								if($_SESSION["user_type"] ==1){
-									echo '<th class>Actions</th>';
+									echo '<th id="action">Actions</th>';
 								} ?>
 							</tr>
 						</thead>
@@ -110,10 +109,10 @@
 									if($_SESSION["user_type"] ==1){
 									echo '
 									<td >
-										<a data-bs-toggle="modal" data-bs-target="#editSet" class="set">
+										<a title="Edit" data-bs-toggle="modal" data-bs-target="#editSet" class="set">
 											<i class="align-middle" data-feather="edit-2"></i>
 										</a>
-										<a href="" data-bs-toggle="modal" data-bs-target="#deleteBundle" class="set">
+										<a title="Delete" href="" data-bs-toggle="modal" data-bs-target="#deleteBundle" class="set">
 											<i class="align-middle me-2" data-feather="trash-2"></i>
 										</a>
 									</td>';
@@ -123,6 +122,7 @@
 						?>
 						</tbody>
 					</table>
+					<div id="footer" class="dataTables_wrapper">
 					</div>
 				</div>
 			</div>

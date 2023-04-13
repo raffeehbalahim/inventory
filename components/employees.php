@@ -31,7 +31,7 @@
 								<th>Set</th>
 								<?php
 								if($_SESSION["user_type"] ==1){ //Checks if User is Admin
-									echo '<th>Action</th>';
+									echo '<th id="action">Action</th>';
 								} ?>
 							</tr>
 						</thead>
@@ -66,10 +66,10 @@
 										if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 										echo '
 											<td>
-												<a data-bs-toggle="modal" data-bs-target="#editEmployee" class="employee">
+												<a title="Edit" data-bs-toggle="modal" data-bs-target="#editEmployee" class="employee">
 													<i class="align-middle" data-feather="edit-2"></i>
 												</a>
-												<a href="" data-bs-toggle="modal" data-bs-target="#deleteEmployee" class="employee">
+												<a title="Delete" href="" data-bs-toggle="modal" data-bs-target="#deleteEmployee" class="employee">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
 												</a>
 											</td>';
@@ -79,7 +79,8 @@
 								?>
 						</tbody>
 					</table>
-					
+					<div id="footer" class="dataTables_wrapper">
+					</div>
 				</div>
 			</div>			
 		</div>

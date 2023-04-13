@@ -100,7 +100,7 @@
 										echo '<th><a class="sort-head">Set</a></th>';
 										//<!-- <th>Status</th> -->
 									//if($_SESSION["user_type"] == 1){
-										echo '<th>Actions</th>';
+										echo '<th id="action" style="text-align: right">Actions</th>';
 									//}
 								?>
 							</tr>
@@ -248,14 +248,14 @@
 										}
 										if($_SESSION["user_type"] ==1){ // Checks if User is Admin
 										echo '
-											<td >
-												<a style="margin-right: 10px" href="peripherals.php?item=row_'. $peripherals['component_id'] .'" id="' . $peripherals['component_id'] . '">
-													<i class="align-middle" data-feather="eye"></i>
+											<td style="text-align: right">
+												<a title="View" style="margin-right: 10px" href="peripherals.php?item=row_'. $peripherals['component_id'] .'" id="' . $peripherals['component_id'] . '">
+													<i class="align-middle" data-feather="eye" ></i>
 												</a>
-												<a style="margin-right: 10px" data-bs-toggle="modal" data-bs-target="#assignItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')">
+												<a title="Assign" style="margin-right: 10px" data-bs-toggle="modal" data-bs-target="#assignItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')">
 													<i class="align-middle" data-feather="user-plus"></i>
 												</a>
-												<a href="" data-bs-toggle="modal" data-bs-target="#deleteItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')">
+												<a title="Delete" href="" data-bs-toggle="modal" data-bs-target="#deleteItem" class="item delete" onclick="editItems(' . $peripherals['component_id'] . ')">
 													<i class="align-middle me-2" data-feather="trash-2"></i>
 												</a>
 											</td>';
@@ -267,6 +267,8 @@
 								?>
 						</tbody>
 					</table>
+					<div id="footer" class="dataTables_wrapper">
+					</div>
 				</div>
 			</div>
 		</div>
