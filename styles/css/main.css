@@ -223,7 +223,7 @@ table.dataTable tbody td.no-padding {
 
 @media screen and (min-width: 835px){
 
-#employeeTables_wrapper, #myTable_wrapper, #itemTable_wrapper {
+#employeeTables_wrapper, #myTable_wrapper, #itemTable_wrapper, #setsTable_wrapper{
     margin-bottom: 50px;
 }
 

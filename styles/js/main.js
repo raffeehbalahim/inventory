@@ -247,7 +247,7 @@ $(document).ready( function () {
                 tr.removeClass('shown');
             });
         }
-        /*table.rows().every(function() {
+        table.rows().every(function() {
             if(this.child.isShown()) {
             // Collapse row details
                 $('div.slider', this.child()).slideUp(function () {
@@ -255,13 +255,13 @@ $(document).ready( function () {
                     $(this.node()).removeClass('parent');
                 });
             }
-        });*/ else {
+        })
         if(row.child.hide()) {        
             // Open this row
             row.child(format(row.data()), 'no-padding').show();
             tr.addClass('shown');
             $('div.slider', row.child()).slideDown();
-        }}
+        }
         
     });
     //Open Accordion Selected From Set Page
@@ -292,25 +292,30 @@ $(document).ready( function () {
     $('#setsTable tbody').on('click', 'td', function () {
        
         var tr = $(this).closest('tr');
-        var row = table.row(tr)
+        var row = table.row(tr);
  
         if (row.child.isShown()) {
             //This row is already open - close it
-           row.child.hide();
-           tr.removeClass('shown');
-       }
-       table.rows().every(function() {
-           if(this.child.isShown()) {
-           // Collapse row details
-           this.child.hide();
-           $(this.node()).removeClass('parent');
-           }
-       })
-       if(row.child.hide()) {        
-           // Open this row
-           row.child(setformat(row.data())).show();
-           tr.addClass('shown');
-       }
+            $('div.slider', row.child()).slideUp(function () {
+                row.child.hide();
+                tr.removeClass('shown');
+            });
+        }
+        table.rows().every(function() {
+            if(this.child.isShown()) {
+            // Collapse row details
+                $('div.slider', this.child()).slideUp(function () {
+                    this.child.hide();
+                    $(this.node()).removeClass('parent');
+                });
+            }
+        })
+        if(row.child.hide()) {        
+            // Open this row
+            row.child(setformat(row.data()), 'no-padding').show();
+            tr.addClass('shown');
+            $('div.slider', row.child()).slideDown();
+        }
     });
 });
 
@@ -338,6 +343,7 @@ function format(row) {
 
 function setformat(row) {
     return (
+        '<div class="slider">'+
         '<span>Peripherals:</span>' +
         '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<thead>' +
@@ -359,7 +365,8 @@ function setformat(row) {
         '</tr>' +
         '</tr>' +
         '</tbody>' +
-        '</table>'
+        '</table>' +
+        '</div>' 
     );
 }
 function editItems($id){
