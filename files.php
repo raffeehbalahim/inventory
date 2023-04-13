@@ -20,6 +20,10 @@ if($_SESSION["loggedin"] != true){
 	<link href="DataTables/datatables.min.css" rel="stylesheet"/>
  
 	<script src="DataTables/datatables.min.js"></script>
+
+	<script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
+	<script src="https://cdn.datatables.net/fixedheader/3.3.2/js/dataTables.fixedHeader.min.js"></script>
+	<link href="https://cdn.datatables.net/fixedheader/3.3.2/css/fixedHeader.dataTables.min.css" rel="stylesheet">
 </head>
 
 <body>
