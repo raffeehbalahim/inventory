@@ -26,6 +26,7 @@
 					<table id="employeeTables" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr>
+								<th style="display: none">Employee ID</th>
 								<th>First Name</th>
                                 <th>Last Name</th>
 								<th>Set</th>
@@ -49,7 +50,7 @@
 									$employeeId = $employee['id'];
                                     // $setID = $employees['set_id'];
 									echo '<tr>';
-										//echo '<td style="display: none">' . $employeeId . '</td>';
+										echo '<td style="display: none">' . $employeeId . '</td>';
 										echo '<td>' . $employee['firstname'] . '</td>';
 										echo '<td>' . $employee['lastname'] . '</td>';
 										

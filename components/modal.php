@@ -134,6 +134,14 @@
                             <input type="text" class="form-control" placeholder="Last Name" name="lastname">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Username" name="username">
+                        </div>
+                        <div class="col">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-auto">
                             <select class="form-select mb-3" name="bundle">

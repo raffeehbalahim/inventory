@@ -1,5 +1,6 @@
 <?php 
     include '../db/config.php';
+    session_start();
 
     
     if(isset($_POST['createItem'])){
@@ -28,6 +29,14 @@
              } else {
                  echo "Item created unsuccessfully ";
              }
+
+             # Logs
+             $user = $_SESSION["username"];
+             $description = "Created peripheral " . $unit . " with a serial number of " . $serialNumber . ".";
+             $affected_user = "None";
+             $date = date("Y-m-d h:i:sa");
+             $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+             mysqli_query($db, $logs);
             
              header('location: ../index.php');
          } 
@@ -70,6 +79,13 @@
                              VALUES ('$item', '$unit', '$serial', '$specs', '$price', '$manufacturer', '$date', '$receipt_id', '0')";
                              mysqli_query($db, $create_item);
                          }
+                         # Logs
+                         $user = $_SESSION["username"];
+                         $description = "Created peripheral " . $unit . " with a serial number of " . $serial . ".";
+                         $affected_user = "None";
+                         $date = date("Y-m-d h:i:sa");
+                         $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+                         mysqli_query($db, $logs);
                      }
                      header('location: ../index.php');
                  } else {
@@ -95,6 +111,15 @@
             $createBundle = "INSERT INTO set_bundle (set_name)
                 VALUES ('$bundle')";
             mysqli_query($db, $createBundle);
+
+            # Logs
+            $user = $_SESSION["username"];
+            $description = "Created Set:  " . $bundle . ".";
+            $affected_user = "None";
+            $date = date("Y-m-d h:i:sa");
+            $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+            mysqli_query($db, $logs);
+
             header('location: ../sets.php');
         }
     } else if(isset($_POST['createEmployee'])){
@@ -102,6 +127,8 @@
         if ($_POST['firstname'] && $_POST['lastname']) {
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
+            $username = $_POST['username'];
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
             # Check if there is a Set chosen
             if(isset($_POST['bundle'])){
@@ -109,9 +136,23 @@
             } else {
                 $bundleId = 0;
             }
-            $createEmployee = "INSERT INTO employees (firstname, lastname, set_id)
-                VALUES ('$firstname', '$lastname','$bundleId')";
+            $createEmployee = "INSERT INTO employees (firstname, lastname, set_id, username)
+                VALUES ('$firstname', '$lastname','$bundleId','$username')";
             mysqli_query($db, $createEmployee);
+            $date = date("Y-m-d h:i:sa");
+            $type = 2;
+            $createEmployee = "INSERT INTO users (username, password, created_at, user_type)
+                VALUES ('$username', '$password','$date','$type')";
+            mysqli_query($db, $createEmployee);
+
+            # Logs
+            $name = $firstname." ".$lastname;
+            $user = $_SESSION["username"];
+            $description = "Created Employee:  " . $name . ".";
+            $affected_user = $name;
+            $date = date("Y-m-d h:i:sa");
+            $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+            mysqli_query($db, $logs);
             echo "Employee: ".$employeeId = mysqli_insert_id($db);
             
             /*if(isset($_POST['bundle'])){
@@ -172,6 +213,14 @@
                              $create_set = "INSERT INTO set_bundle (set_name)
                              VALUES ('$set')";
                              mysqli_query($db, $create_set);
+
+                             # Logs
+                             $user = $_SESSION["username"];
+                             $description = "Created Set:  " . $set . ".";
+                             $affected_user = "None";
+                             $date = date("Y-m-d h:i:sa");
+                             $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+                             mysqli_query($db, $logs);
     
                              # Get new set
                              $get_set = "SELECT * FROM set_bundle WHERE set_name = '$set' ";
@@ -184,6 +233,14 @@
                              VALUES ('$firstname', '$lastname', '$setid')";
                              mysqli_query($db, $create_employee);
                          }
+                         # Logs
+                         $name = $firstname." ".$lastname;
+                         $user = $_SESSION["username"];
+                         $description = "Created Employee:  " . $name . ".";
+                         $affected_user = $name;
+                         $date = date("Y-m-d h:i:sa");
+                         $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+                         mysqli_query($db, $logs);
                      }
                      header('location: ../employee.php');
                  } else {
@@ -228,6 +285,14 @@
 
             if ($didUpload) {
                 $insert = $db->query("INSERT into files (file_name, uploaded_on) VALUES ('".$fileName."', NOW())");
+                # Logs
+                $name = $firstname." ".$lastname;
+                $user = $_SESSION["username"];
+                $description = "Added a File:  " . $fileName . ".";
+                $affected_user = 'None';
+                $date = date("Y-m-d h:i:sa");
+                $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+                mysqli_query($db, $logs);
                 echo "The file " . basename($fileName) . " has been uploaded";
                 header('location: ../files.php');
             } else {

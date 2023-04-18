@@ -99,9 +99,11 @@
 										echo '<th><a class="sort-head">Assignee</a></th>';
 										echo '<th><a class="sort-head">Set</a></th>';
 										//<!-- <th>Status</th> -->
-									//if($_SESSION["user_type"] == 1){
+									if($_SESSION["user_type"] == 1){
 										echo '<th id="action" style="text-align: right">Actions</th>';
-									//}
+									} else {
+										echo '<th id="action" style="display:none">Actions</th>';
+									}
 								?>
 							</tr>
 						</thead>

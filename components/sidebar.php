@@ -24,16 +24,27 @@
                     <i class="align-middle" data-feather="package"></i> <span class="align-middle">Sets</span>
                 </a>
 			</li>
+            <?php if($_SESSION["user_type"] ==1){ ?>
             <li class="sidebar-item">
 				<a class="sidebar-link" href="employee.php">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Employees</span>
                 </a>
 			</li>
+            <?php } 
+             if($_SESSION["user_type"] ==1){ ?>
             <li class="sidebar-item">
 				<a class="sidebar-link" href="files.php">
                     <i class="align-middle" data-feather="file"></i> <span class="align-middle">File Storage</span>
                 </a>
 			</li>
+            <?php } 
+             if($_SESSION["user_type"] ==1){ ?>
+            <li class="sidebar-item">
+				<a class="sidebar-link" href="logs.php">
+                    <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Logs</span>
+                </a>
+			</li>
+            <?php } ?>
         </ul>
     </div>
 </nav>

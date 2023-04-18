@@ -236,3 +236,14 @@ table.dataTable tbody td.no-padding {
 #footer {
     padding: 8px 20px;
 }
+.login-title {
+    font-size: 25px;
+    font-weight: 30px;
+    color: #0F3F66;
+}
+
+.avatar {
+    height: 40px;
+    width: 75px;
+    margin-right: -20px!important;
+}

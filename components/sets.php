@@ -25,6 +25,7 @@
 								<th class="col-2">Set</th>
 								<!-- <th>Status</th> -->
 								<th>Assignee</th>
+								<th style="display: none">employee id</th>
 								<!-- Total Price Header -->
 								<th>Total Cost</th>
 								<th style="display: none;">unit</th>
@@ -57,10 +58,11 @@
 										while ($employee = mysqli_fetch_assoc($getBundleAssignments)) {
 											$employeeId = $employee['id'];
 											echo '<td>' . $employee['firstname'] . ' ' . $employee['lastname'] .'</td>';
-											//echo '<td style="display: none">' . $employeeId  . '</td>';
+											echo '<td style="display: none">' . $employeeId  . '</td>';
 										}
 									} else {
 										echo '<td>None</td>';
+										echo '<td style="display: none">0</td>';
 									}
 									#Total Price
 									$total = "SELECT SUM(price) as price from peripherals WHERE set_id = '$bundleId' "; 

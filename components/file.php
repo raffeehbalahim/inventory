@@ -25,6 +25,7 @@
 								$files = "SELECT * FROM files";
 								$getFiles = mysqli_query($db, $files);
 								while ($file = mysqli_fetch_assoc($getFiles)) {
+									echo '<tr>';
 									$name = $file['file_name'];
 									echo '<td>' . $name . '</td>';
 									echo '<td>' . $file['uploaded_on'] . '</td>';
@@ -46,6 +47,7 @@
 												</a>
 											</td>';
 									}
+									echo '</tr>';
 								}
 							?>
 						</tbody>

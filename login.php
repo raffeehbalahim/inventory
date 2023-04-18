@@ -21,12 +21,12 @@
 				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
 					<div class="d-table-cell align-middle">
 
-						<div class="text-center">
+						<!--<div class="text-center">
 							<h1 style="font-size: 50px;">Inventory System</h1>
 							<p class="lead mt-5">
 								Sign in to your account to continue
 							</p>
-						</div>
+						</div> -->
 
                         <?php 
                         if(!empty($_SESSION["login_err"])){
@@ -36,6 +36,10 @@
 
 						<div class="card">
 							<div class="card-body card-login">
+								<div class="text-center">
+									<img  style="max-height: 100px; margin-bottom: 20px"src="styles/img/avatars/CapytechLogo_V2_2020.png">
+									<h1 class="login-title">Inventory Systems</h1>
+								</div>
 								<div class="m-sm-4">
 									<form action="lib/login.php" method="post" autocomplete="off">
 										<div class="mb-3">

@@ -7,12 +7,12 @@ $('.set').click(function(){
 
     console.log($data);
     if($data[2] == "None"){
-        $('#editSet #currentAssignee').val(0);
-        $('#editSet #empID').val(0);
+        $('#editSet #currentAssignee').val(2);
+        $('#editSet #empID').val(3);
         $('#editSet #none').hide();
     } else {
         $('#editSet #empID').val($data[3]);
-        $('#editSet #currentAssignee').val($data[3]);
+        $('#editSet #currentAssignee').val($data[2]);
         $('#editSet #none').show();
     }
     $('#editSet #currentAssignee').html($data[2]);
@@ -22,9 +22,9 @@ $('.set').click(function(){
 
     $('#editSet #setID').val($data[0]);
     $('#editSet #set').val($data[1]);
-    // $('#editSet #currentAssignee').html($data[2]);
-    // $('#editSet #assignee').val($data[3]);
-    // $('#editSet #empID').val($data[3]);
+    $('#editSet #currentAssignee').html($data[2]);
+    //$('#editSet #assignee').val($data[3]);
+    $('#editSet #empID').val($data[3]);
     
 });
 /*
@@ -72,16 +72,16 @@ $('.employee').click(function(){
 
     if($data[3] == "None"){
         $('#editEmployee #none').hide();
-        $('#editEmployee #currentBundle').html($data[2]);
-        $('#editEmployee #currentBundle').val(2);
+        $('#editEmployee #currentBundle').html($data[3]);
+        $('#editEmployee #currentBundle').val(3);
     } else {
         $('#editEmployee #none').show();
         $('#editEmployee #currentBundle').html($data[3]);
-        $('#editEmployee #currentBundle').val($data[2]);
+        $('#editEmployee #currentBundle').val($data[3]);
     }
-    //$('#editEmployee #employee').val($data[0]);
-    $('#editEmployee #firstname').val($data[0]);
-    $('#editEmployee #lastname').val($data[1]);
+    $('#editEmployee #employee').val($data[0]);
+    $('#editEmployee #firstname').val($data[1]);
+    $('#editEmployee #lastname').val($data[2]);
 
     
 
@@ -91,7 +91,7 @@ $('.employee').click(function(){
     $('#deleteEmployee #employee').val($data[0]);
     $('#deleteEmployee #firstname').val($data[1]);
     $('#deleteEmployee #lastname').val($data[2]);
-    $('#deleteEmployee #set').val($data[4]);
+    $('#deleteEmployee #set').val($data[3]);
 
     $('#deleteEmployee #delete').attr('href','lib/delete.php?employee='+ $data[0]);
 });
