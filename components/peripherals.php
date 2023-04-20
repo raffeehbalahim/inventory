@@ -4,7 +4,9 @@
 	<div class="container-fluid p-0">
 		<div class="d-flex justify-content-between">
 			<h1 class="h3 mb-3"><strong>Peripherals</strong></h1>
+			<?php if($_SESSION["user_type"] ==1){ ?>
 			<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#createItem"><i class="align-middle me-2" data-feather="plus"></i><label for="addItem">Add Item</label></a></button>
+			<?php } ?>
 		</div>
 		<div class="row">
 			<div class="col-12 d-flex">
@@ -59,7 +61,14 @@
 									</div>
 								</div>		
 								<div class="row mb-3">
-									<div class="col-md-6">
+									<div class="col">
+										<input type="text" class="form-control" placeholder="Additional Info" value="" name="Specs">
+									</div>
+									<?php if($_SESSION["user_type"] == 1){ ?>
+									<div class="col">
+									<?php }  else {?>
+									<div class="col" style="visibility: hidden">
+									<?php } ?>
 									<select class="form-select mb-3" name="bundle">
 										<?php
 										#Displays options for Sorting Sets
@@ -75,9 +84,6 @@
                                     	}
                                 		?>
                             			</select>
-									</div>
-									<div class="col">
-										<input type="text" class="form-control" placeholder="Additional Info" value="" name="Specs">
 									</div>
 								</div>		
 							</div>
@@ -193,6 +199,7 @@
 								}
 
 								while ($peripherals = mysqli_fetch_assoc($result)) {
+									if($_SESSION["user_type"] ==1){
 									echo '<tr id="row_' . $peripherals['component_id'] . '" class="accordion">';
 										echo '<td style="display: none" id="component_id_' . $peripherals['component_id'] . '">' . $peripherals['component_id'] . '</td>';
 										echo '<td style="display: none" id="set_id_' . $peripherals['component_id'] . '">' . $peripherals['set_id'] . '</td>';
@@ -264,6 +271,93 @@
 											echo '<td style="display:none"></td>';
 										}
 										echo '</tr>';
+									} else {
+										$user = $_SESSION['username'];
+										$get_empSetID = "SELECT *
+											FROM employees 
+											WHERE username = '$user'";
+												
+										$result_set = mysqli_query($db, $get_empSetID);
+										if (mysqli_num_rows($result_set) > 0) {
+										while ($emp = mysqli_fetch_assoc($result_set)) {
+											$employee_set = $emp['set_id'];
+										}
+										}
+
+									if($peripherals['set_id'] == $employee_set && $peripherals['set_id']!=0){
+										echo '<tr id="row_' . $peripherals['component_id'] . '" class="accordion">';
+										echo '<td style="display: none" id="component_id_' . $peripherals['component_id'] . '">' . $peripherals['component_id'] . '</td>';
+										echo '<td style="display: none" id="set_id_' . $peripherals['component_id'] . '">' . $peripherals['set_id'] . '</td>';
+										echo '<td id="brand_' . $peripherals['component_id'] . '">' . $peripherals['brand'] . '</td>';
+										echo '<td id="unit_' . $peripherals['component_id'] . '">' . $peripherals['unit'] . '</td>';
+										echo '<td style="display:none" id="serial_number_' . $peripherals['component_id'] . '">' . $peripherals['serial_number'] . '</td>';
+										echo '<td id="purchase_date_' . $peripherals['component_id'] . '">' . $peripherals['purchase_date'] . '</td>';
+										echo '<td id="price_' . $peripherals['component_id'] . '">' . $peripherals['price'] . '</td>';
+										echo '<td id="manufacturer_' . $peripherals['component_id'] . '">' . $peripherals['manufacturer'] . '</td>';
+										echo '<td id="receipt_id_' . $peripherals['component_id'] . '">' . $peripherals['receipt_id'] . '</td>';
+										echo '<td style="display:none" id="specs_' . $peripherals['component_id'] . '">' . $peripherals['specs'] . '</td>';
+									
+										$set = $peripherals['set_id'];
+
+										$bundleAssignments = "SELECT * from employees WHERE set_id = '$set' "; 
+										$getBundleAssignments = mysqli_query($db, $bundleAssignments);
+										if($set!= 0){
+									
+										if(mysqli_num_rows($getBundleAssignments)){
+											while ($employee = mysqli_fetch_assoc($getBundleAssignments)) {
+												$employeeId = $employee['id'];
+												echo '<td style="display:none">' . $employee['firstname'] . ' ' . $employee['lastname'] .'</td>';
+												//echo '<td style="display: none">' . $employeeId  . '</td>';
+											}
+										} else {
+											echo '<td style="display:none">None</td>';
+										}
+										} else {
+											echo '<td style="display:none">None</td>';
+											
+										}
+
+
+										if($set == 0) {
+											echo '<td><span class="badge bg-warning my-2" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
+										} else {
+											$get_setID = "SELECT *
+											FROM set_bundle 
+											WHERE set_id = '$set'";
+												
+											$result_set = mysqli_query($db, $get_setID);
+
+											if (mysqli_num_rows($result_set) > 0) {
+												while ($set = mysqli_fetch_assoc($result_set)) {
+													$set = $set['set_name'];
+													if($set == "Archived"){
+														echo '<td><span class="badge bg-danger my-2" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
+													} else {
+														echo '<td><span class="badge bg-success my-2" id="set_text_' . $peripherals['component_id'] . '">' . $set . '</span></td>';
+													}
+												}
+											} else {
+												echo '<td><span class="badge bg-warning my-2" id="set_text_' . $peripherals['component_id'] . '">None</span></td>';
+											}                    
+										}
+										if($_SESSION["user_type"] ==1){ // Checks if User is Admin
+										echo '
+											<td style="display:none">
+											<div class="d-flex justify-content-end action"><label style="margin-right: 10px">Actions: </label>
+												<a title="Edit" data-bs-toggle="modal" style="margin-right: 10px" data-bs-target="#editItem" class="item" onclick="editItems(' . $peripherals['component_id'] . ')" id="' . $peripherals['component_id'] . '">
+													<i class="align-middle" data-feather="edit-2"></i>
+												</a>
+												<a title="Delete" href="" data-bs-toggle="modal"  style="margin-right: 30px" data-bs-target="#deleteItem" onclick="editItems(' . $peripherals['component_id'] . ')" class="item">
+													<i class="align-middle me-2" data-feather="trash-2"></i>
+												</a>
+											</div>
+											</td>';
+										} else {
+											echo '<td style="display:none"></td>';
+										}
+										echo '</tr>';
+									}
+									}
 								}
 								?>
 						</tbody>

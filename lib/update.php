@@ -178,6 +178,29 @@
         $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
         mysqli_query($db, $logs);
         header('location: ../index.php');
+    } else if(isset($_POST['submitProfile'])){
+        $fname = $_POST['firstName'];
+        $lname = $_POST['lastName']; 
+        $username = $_SESSION["username"];
+        $pass = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+        # Update item information
+        $update_employeeInfo= "UPDATE employees 
+            SET firstname = '$fname', lastname = '$lname'
+            WHERE username = '$username'";
+        mysqli_query($db, $update_employeeInfo);
+        $update_employeeCreds= "UPDATE users 
+            SET `password` = '$pass'
+            WHERE username = '$username'";
+        mysqli_query($db, $update_employeeCreds);
+
+        $user = $fname." ".$lname;
+        $description = "Edit Profile Information.";
+        $affected_user = $user;
+        $date = date("Y-m-d h:i:sa");
+        $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+        mysqli_query($db, $logs);
+        header('location: ../profile.php');
     }
-    
+
 ?>

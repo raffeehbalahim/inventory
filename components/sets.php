@@ -4,7 +4,9 @@
 	<div class="container-fluid p-0">
 		<div class="d-flex justify-content-between">
 			<h1 class="h3 mb-3"><strong>Sets</strong></h1>
+			<?php if($_SESSION["user_type"] ==1){ ?>
 			<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#createBundle"><i class="align-middle me-2" data-feather="plus"></i><label for="addSet">Add Set</label></a></button>
+			<?php } ?>
 		</div>
 
 		<div class="row">
