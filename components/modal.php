@@ -505,3 +505,75 @@
 		</div>
 	</div>
 </div>
+
+<!-- Filter Item -->
+<div class="modal fade" id="requestItem" tabindex="-1"  aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+            <form action="lib/create.php" method="post" autocomplete="off">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Request Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" style="margin-bottom:10px">
+                        <div class="col">
+                            <select required class="form-select" id="selectItem" name="item">
+                                
+                                <?php
+                                    $items = "SELECT * FROM peripherals WHERE set_id = 0;"; 
+                                    $getItems = mysqli_query($db, $items);
+            
+                                    while ($item = mysqli_fetch_assoc($getItems)) {
+                                        $itemID = $item['component_id']; 
+                                        echo '<option value="' . $itemID . '">' . $item['brand'] . ' - ' . $item['unit'] . '</option>'; 
+                                    }
+                                    
+                                    
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                        <?php
+                        $items1 = "SELECT * FROM peripherals WHERE set_id = 0"; 
+                        $getItems1 = mysqli_query($db, $items1);
+                        while ($item1 = mysqli_fetch_assoc($getItems1)) {
+                            $id1 = $item1['component_id'];
+                    echo '<div style="display:none"  id="' . $id1 . '" class="here">';
+                    echo '<div class="row mb-2">';
+                        echo '<div class="col">';
+                            echo '<label>Serial Number</label><input disabled type="number" class="form-control" placeholder="Serial Number" name="serial" id="serial" value="' . $item1['serial_number'] . '">';
+                        echo '</div>';
+                        echo '<div class="col">';
+                            echo '<label>Manufacturer</label><input disabled type="text" class="form-control" placeholder="Manufacturer" name="manufacturer" id="manufacturer" value="' . $item1['manufacturer'] . '">';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<div class="row mb-2">';
+                        echo '<div class="col">';
+                            echo '<label>Price</label><input disabled type="number" class="form-control" placeholder="Item Cost" name="price" id="price" value="' . $item1['price'] . '">';
+                        echo '</div>';
+                        echo '<div class="col">';
+                            echo '<label>Additional Info</label><input disabled type="text" class="form-control" placeholder="Additional Info" name="info" id="info" value="' . $item1['specs'] . '">';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                        } 
+                        ?>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" name="createRequest">
+                </div>
+            </form>
+		</div>
+	</div>
+</div>
+<script>
+setInterval(function () {
+    var e = document.getElementById("selectItem");
+    $item = e.value;
+    $(".here").css('display','none');
+    document.getElementById($item).style.display = "block";
+}, 100);
+
+
+</script>

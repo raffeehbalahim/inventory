@@ -304,5 +304,32 @@
             }
         }
 
+    } if(isset($_POST['createRequest'])){
+        # Create request
+         if ($_POST['item']) {
+           
+             echo $userid = $_SESSION['id'];
+             echo $itemid = $_POST['item'];
+             echo $date = date("Y-m-d h:i:sa");
+             echo $status = 0;
+
+             $createRequest = "INSERT INTO requests (`userid`, `itemid`, `date`, `status`)
+                 VALUES ('$userid', '$itemid', '$date', '$status')";
+             if (mysqli_query($db, $createRequest)) {
+                 echo "Item created successfully ";
+             } else {
+                 echo "Item created unsuccessfully ";
+             }
+             /*
+             # Logs
+             $user = $_SESSION["username"];
+             $description = "Created peripheral " . $unit . " with a serial number of " . $serialNumber . ".";
+             $affected_user = "None";
+             $date = date("Y-m-d h:i:sa");
+             $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
+             mysqli_query($db, $logs);
+            */
+             header('location: ../index.php');
+         } 
     }
 ?>

@@ -44,6 +44,13 @@
                     <i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Logs</span>
                 </a>
 			</li>
+            <?php } 
+             if($_SESSION["user_type"] ==1){ ?>
+            <li class="sidebar-item">
+				<a class="sidebar-link" href="requests.php">
+                    <i class="align-middle" data-feather="hard-drive"></i> <span class="align-middle">Requests</span>
+                </a>
+			</li>
             <?php } ?>
         </ul>
     </div>

@@ -9,10 +9,6 @@
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-between">
 						<h5 class="card-title mb-0">Peripherals</h5>
-						<?php
-						if($_SESSION["user_type"] ==2){ //Checks if User is Admin
-							echo '<a data-bs-toggle="modal" data-bs-target="#requestItem"><label for="addItem">Request Item: </label><i class="align-middle me-2" data-feather="plus"></i></a>';
-						}?>
 					</div>
 					<div style="display: none!important;" class="card-header d-flex">
 						<input id="searchInput" class="employee-form" placeholder="Search" onkeyup="searchItemTable()">
