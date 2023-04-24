@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>Sign In | Capytech Inventory</title>
+	<link rel="icon" type="image/x-icon" href="styles/img/avatars/capybara.png">
 
     <link href="styles/css/bootstrap.min.css" rel="stylesheet">
 	<link href="styles/css/main.css" rel="stylesheet">

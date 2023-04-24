@@ -21,6 +21,7 @@ if($_SESSION["user_type"] !=1){
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 	<script src="styles/js/jquery.js"></script>
 	<link href="DataTables/datatables.min.css" rel="stylesheet"/>
+	<link rel="icon" type="image/x-icon" href="styles/img/avatars/capybara.png">
  
 	<script src="DataTables/datatables.min.js"></script>
 

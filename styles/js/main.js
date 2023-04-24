@@ -325,16 +325,13 @@ function format(row) {
         row[12] +
         '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
         '<tr>' +
-        '<td>Serial Number:</td>' +
-        '<td>'+ row[4] +'</td>' +
+        '<td>Serial Number: '+ row[4] +'</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Assignee:</td>' +
-        '<td>'+ row[10] +'</td>' +
+        '<td>Assignee: '+ row[10] +'</td>' +
         '</tr>' +
         '<tr>' +
-        '<td>Additional Information:</td>' +
-        '<td>'+ row[9] +'</td>' +
+        '<td>Additional Information: '+ row[9] +'</td>' +
         '</tr>' +
         '</table>'+
         '</div>' 
@@ -357,11 +354,11 @@ function setformat(row) {
         '</thead>' +
         '<tbody>' +
         '<tr>' +
-        '<td>'+ row[4] +'</td>' +
         '<td>'+ row[5] +'</td>' +
         '<td>'+ row[6] +'</td>' +
         '<td>'+ row[7] +'</td>' +
         '<td>'+ row[8] +'</td>' +
+        '<td>'+ row[9] +'</td>' +
         '</tr>' +
         '</tr>' +
         '</tbody>' +
