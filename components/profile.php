@@ -9,6 +9,7 @@
                     <div class="card d-flex justify-content-between">
                         <div class="card-body text-center">
                         <?php
+                            $name = 'Admin';
                             $employee = $_SESSION['username'];
                             $info = "SELECT * from employees WHERE username = '$employee' ";
 							$getInfo = mysqli_query($db, $info);
@@ -16,16 +17,19 @@
                                 while ($emp = mysqli_fetch_assoc($getInfo)) {
                                     $name = $emp['firstname']." ".$emp['lastname'];
                                     $first = $emp['firstname'];
-                                    $last = $emp['lastname'];
+                                    $last = $emp['lastname'];                      
                                 }
                             }
 
                         ?>
 						    <img src="styles/img/avatars/capyphoto.png" alt="Christina Mason" class="img-fluid rounded-circle mb-2" width="300" height="300">
 							<h5 class="card-title mb-0"><?php echo $name; ?></h5>
+                            <?php if($_SESSION["user_type"] != 1){?>
                             <div class="text-muted mb-2">Employee</div>
+                            <?php } ?>
                             <br>
                             <form action="lib/update.php" method="post" autocomplete="off">
+                            <?php if($_SESSION["user_type"] != 1){?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <input required type="text" class="form-control" placeholder="First Name" name="firstName" id="firstName" value="<?php echo $first; ?>">
@@ -34,6 +38,7 @@
                                     <input required type="text" class="form-control" placeholder="Last Name" name="lastName" id="lastName" value="<?php echo $last; ?>">
                                 </div>
                             </div>
+                            <?php } ?>
                             <div class="row mb-3">
                                 <div class="col">
                                     <input disabled type="text" class="form-control" placeholder="Username" name="username" id="username" value="<?php echo $employee; ?>">

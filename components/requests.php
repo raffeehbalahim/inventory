@@ -1,26 +1,36 @@
 <main class="content">
 	<div class="container-fluid p-0">
-
-		<h1 class="h3 mb-3"><strong>Request Logs</strong></h1>
-
+		<div class="d-flex justify-content-between">
+			<h1 class="h3 mb-3"><strong>Request Logs</strong></h1>
+			<?php if($_SESSION["user_type"] ==2){ //Checks if User is Admin ?>
+				<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#requestItem"><i class="align-middle me-2" data-feather="plus"></i><label for="addItem">Request Item</label></a></button>
+			<?php } ?>
+		</div>
 		<div class="row">
 			<div class="col-12 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-end">
 					</div>
-					<table id="fileTable" style="width: 100%" class="table table-hover my-0">
+					<table id="requestTable" style="width: 100%" class="table table-hover my-0">
 						<thead>
 							<tr>
 								<th>Item Request</th>
 								<th>Requestor</th>
                                 <th>Date</th>
                                 <th>Status</th>
+								<?php if($_SESSION["user_type"] ==1){ //Checks if User is Admin ?>
 								<th id="action" style="text-align: right">Actions</th>
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-								$requests = "SELECT * FROM requests";
+								if($_SESSION["user_type"] ==1){
+									$requests = "SELECT * FROM requests";
+								} else {
+									$user_id = $_SESSION["id"];
+									$requests = "SELECT * FROM requests WHERE userid = '$user_id'";
+								}
 								$getRequests = mysqli_query($db, $requests);
 								while ($request = mysqli_fetch_assoc($getRequests)) {
 									echo '<tr>';

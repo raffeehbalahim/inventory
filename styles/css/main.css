@@ -155,7 +155,7 @@ th {
     padding: .5rem 1.25rem;
 }
 
-#itemTable_wrapper {
+#itemTable_wrapper, #requestTable_wrapper, #logsTable_wrapper, #fileTable_wrapper {
     padding: .5rem 1.25rem;
 }
 
@@ -163,12 +163,12 @@ th {
     .filter, .filter .d-flex {
         display: inline-flex;
     }
-    #myTable_length, #myTable_filter, #myTable_filter label, #employeeTables_length, #employeeTables_filter, #employeeTables_filter label, #fileTable_length, #fileTable_filter, #fileTable_filter label, #setsTable_length, #setsTable_filter, #setsTable_filter label, #itemTable_length, #itemTable_filter, #itemTable_filter label {
+    #myTable_length, #myTable_filter, #myTable_filter label, #employeeTables_length, #employeeTables_filter, #employeeTables_filter label, #fileTable_length, #fileTable_filter, #fileTable_filter label, #setsTable_length, #setsTable_filter, #setsTable_filter label, #itemTable_length, #itemTable_filter, #itemTable_filter label, #logsTable_length, #logsTable_filter, #logsTable_filter label, #requestTable_length, #requestTable_filter, #requestTable_filter label {
      width: 100%;
      padding: 0!important;
      display: flex;
     }
-    #myTable_filter label input, #employeeTables_filter label input, #fileTable_filter label input, #setsTable_filter label input, #itemTable_filter label input {
+    #myTable_filter label input, #employeeTables_filter label input, #fileTable_filter label input, #setsTable_filter label input, #itemTable_filter label input, #logsTable_filter label input, #requestTable_filter label input {
         display: inline-flex;
         width: 100%;
     }
@@ -223,7 +223,7 @@ table.dataTable tbody td.no-padding {
 
 @media screen and (min-width: 835px){
 
-#employeeTables_wrapper, #myTable_wrapper, #itemTable_wrapper, #setsTable_wrapper{
+#employeeTables_wrapper, #myTable_wrapper, #itemTable_wrapper, #setsTable_wrapper, #fileTable_wrapper, #logsTable_wrapper, #requestTable_wrapper {
     margin-bottom: 50px;
 }
 

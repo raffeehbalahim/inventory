@@ -223,6 +223,30 @@ $(document).ready( function () {
 });
 
 $(document).ready( function () {
+    $('#logsTable').DataTable({
+        scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
+    });
+    //Adding Pagination and Page Info into Footer
+    $("#logsTable_info").detach().appendTo('#footer');
+    $("#logsTable_paginate").detach().appendTo('#footer');
+});
+
+$(document).ready( function () {
+    $('#requestTable').DataTable({
+        scrollX: true,
+        fixedHeader: {
+            header: true,
+        }
+    });
+    //Adding Pagination and Page Info into Footer
+    $("#requestTable_info").detach().appendTo('#footer');
+    $("#requestTable_paginate").detach().appendTo('#footer');
+});
+
+$(document).ready( function () {
     var table = $('#itemTable').DataTable({
         scrollX: true,
         fixedHeader: {

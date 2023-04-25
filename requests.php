@@ -48,3 +48,14 @@ if($_SESSION["loggedin"] != true){
 	
 </body>
 </html>
+
+<script>
+setInterval(function () {
+    var e = document.getElementById("selectItem");
+    $item = e.value;
+    $(".here").css('display','none');
+    document.getElementById($item).style.display = "block";
+}, 100);
+
+
+</script>
