@@ -304,7 +304,7 @@
             }
         }
 
-    } if(isset($_POST['createRequest'])){
+    } else if(isset($_POST['createRequest'])){
         # Create request
          if ($_POST['item']) {
            

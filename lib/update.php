@@ -201,6 +201,20 @@
         $logs = "INSERT into logs (`user`, `description`, `date`, `affected_user`) VALUES ('$user','$description','$date','$affected_user')";
         mysqli_query($db, $logs);
         header('location: ../profile.php');
-    }
+    } else if(isset($_GET['approve'])){
+        $item = $_GET['approve'];
+        $update_Item = "UPDATE requests 
+            SET status = 1
+            WHERE itemid = '$item'";
+        mysqli_query($db, $update_Item);
+        header('location: ../requests.php');
+    }  else if(isset($_GET['reject'])){
+        $item = $_GET['decline'];
+        $update_Item = "UPDATE requests 
+            SET status = 2
+            WHERE itemid = '$item'";
+        mysqli_query($db, $update_Item);
+        header('location: ../requests.php');
+    } 
 
 ?>

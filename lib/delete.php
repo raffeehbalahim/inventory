@@ -90,5 +90,6 @@
         mysqli_query($db, $deleteEmployee);
 
         header('location: ../employee.php');
+    } else if(isset($_GET['delete'])){
     }
 ?>

@@ -38,7 +38,7 @@
 								<!-- ------------------ -->
 								<?php
 								if($_SESSION["user_type"] ==1){
-									echo '<th id="action">Actions</th>';
+									echo '<th id="action" style="text-align: right">Actions</th>';
 								} ?>
 							</tr>
 						</thead>
@@ -112,7 +112,7 @@
 									
 									if($_SESSION["user_type"] ==1){
 									echo '
-									<td >
+									<td style="text-align: right">
 										<a title="Edit" data-bs-toggle="modal" data-bs-target="#editSet" class="set">
 											<i class="align-middle" data-feather="edit-2"></i>
 										</a>

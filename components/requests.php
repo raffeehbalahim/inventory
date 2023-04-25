@@ -7,10 +7,6 @@
 			<div class="col-12 d-flex">
 				<div class="card flex-fill">
 					<div class="card-header d-flex justify-content-end">
-						<?php
-						if($_SESSION["user_type"] ==1){ //Checks if User is Admin
-							echo '<a data-bs-toggle="modal" data-bs-target="#addFile"><i class="align-middle me-2" data-feather="plus"></i></a>';
-						}?>
 					</div>
 					<table id="fileTable" style="width: 100%" class="table table-hover my-0">
 						<thead>
@@ -19,7 +15,7 @@
 								<th>Requestor</th>
                                 <th>Date</th>
                                 <th>Status</th>
-								<th id="action">Actions</th>
+								<th id="action" style="text-align: right">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -50,27 +46,22 @@
                                     echo '<td>' . $request['date'] . '</td>';
                                     if($request['status'] == 0){
                                         echo '<td>Pending</td>';
-                                    } else {
+                                    } else if($request['status'] == 1) {
                                         echo '<td>Approved</td>';
+                                    } else if($request['status'] == 2) {
+                                        echo '<td>Declined</td>';
                                     }
 									if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 									echo '
-											<td>
-                                                <a title="Delete" href="">
+											<td style="text-align: right">
+                                                <a title="Approve" href="lib/update.php?approve=' . $itemid . '">
                                                     <i class="align-middle me-2" data-feather="check"></i>
                                                 </a>
-												<a title="Delete" href="">
-													<i class="align-middle me-2" data-feather="trash-2"></i>
+												<a title="Decline" href="lib/update.php?decline=' . $itemid . '">
+													<i class="align-middle me-2" data-feather="x"></i>
 												</a>
 											</td>';
-									} else {
-										echo '
-											<td>
-												<a title="Download" href="uploads/'.$name.' " download>
-													<i class="align-middle" data-feather="download"></i>
-												</a>
-											</td>';
-									}
+									} 
 									echo '</tr>';
 								}
 							?>

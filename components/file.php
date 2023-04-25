@@ -17,7 +17,7 @@
 							<tr>
 								<th>File Name</th>
 								<th>Date Added</th>
-								<th id="action">Actions</th>
+								<th id="action" style="text-align: right">Actions</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -31,7 +31,7 @@
 									echo '<td>' . $file['uploaded_on'] . '</td>';
 									if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 									echo '
-											<td>
+											<td style="text-align: right">
 												<a title="Download" href="uploads/'.$name.' " download>
 													<i class="align-middle" data-feather="download"></i>
 												</a>
@@ -41,7 +41,7 @@
 											</td>';
 									} else {
 										echo '
-											<td>
+											<td style="text-align: right">
 												<a title="Download" href="uploads/'.$name.' " download>
 													<i class="align-middle" data-feather="download"></i>
 												</a>

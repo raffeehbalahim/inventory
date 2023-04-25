@@ -32,7 +32,7 @@
 								<th>Set</th>
 								<?php
 								if($_SESSION["user_type"] ==1){ //Checks if User is Admin
-									echo '<th id="action">Action</th>';
+									echo '<th id="action" style="text-align: right">Action</th>';
 								} ?>
 							</tr>
 						</thead>
@@ -66,7 +66,7 @@
 										}
 										if($_SESSION["user_type"] ==1){ //Checks if User is Admin
 										echo '
-											<td>
+											<td style="text-align: right">
 												<a title="Edit" data-bs-toggle="modal" data-bs-target="#editEmployee" class="employee">
 													<i class="align-middle" data-feather="edit-2"></i>
 												</a>
