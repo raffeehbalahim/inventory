@@ -1,5 +1,10 @@
 <main class="content">
 	<div class="container-fluid p-0">
+		<?php
+			if($_SESSION["createEmployee_err"] == 1){
+				echo '<div role="alert" class="alert alert-danger" id="error">Username is already taken.</div>';
+				$_SESSION["createEmployee_err"] = 0;
+			} ?>
 		<div class="d-flex justify-content-between">
 		<h1 class="h3 mb-3"><strong>Employees</strong></h1>
 			<button class="btn btn-primary mb-3"><a data-bs-toggle="modal" data-bs-target="#createEmployee"><i class="align-middle me-2" data-feather="plus"></i><label for="addEmployee">Add Employee</label></a></button>
@@ -87,3 +92,20 @@
 		</div>
 	</div>
 </main>
+
+<script>
+$(document).ready( function () { 
+    var fadeTarget = document.getElementById("error");
+    var fadeEffect = setInterval(function () {
+        if (!fadeTarget.style.opacity) {
+            fadeTarget.style.opacity = 1;
+        }
+        if (fadeTarget.style.opacity > 0) {
+            fadeTarget.style.opacity -= 0.2;
+        } else {
+            clearInterval(fadeEffect);
+			document.getElementById("error").style.display = 'none';
+        }
+    }, 200);
+});
+</script>

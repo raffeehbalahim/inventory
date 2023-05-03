@@ -208,7 +208,7 @@
             WHERE itemid = '$item'";
         mysqli_query($db, $update_Item);
         header('location: ../requests.php');
-    }  else if(isset($_GET['reject'])){
+    }  else if(isset($_GET['decline'])){
         $item = $_GET['decline'];
         $update_Item = "UPDATE requests 
             SET status = 2

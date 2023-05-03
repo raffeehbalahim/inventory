@@ -129,7 +129,12 @@
             $lastname = $_POST['lastname'];
             $username = $_POST['username'];
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
+            $check_username = "SELECT * from employees WHERE username = '$username' ";
+			$getCheck = mysqli_query($db, $check_username);
+            if(mysqli_num_rows($getCheck)){
+                $_SESSION["createEmployee_err"] = 1;
+                header('location: ../employee.php');
+            }
             # Check if there is a Set chosen
             if(isset($_POST['bundle'])){
                 $bundleId = $_POST['bundle'];
