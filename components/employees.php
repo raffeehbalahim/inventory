@@ -1,7 +1,7 @@
 <main class="content">
 	<div class="container-fluid p-0">
 		<?php
-			if($_SESSION["createEmployee_err"] == 1){
+			if(isset($_SESSION["createEmployee_err"]) && $_SESSION["createEmployee_err"] == 1){
 				echo '<div role="alert" class="alert alert-danger" id="error">Username is already taken.</div>';
 				$_SESSION["createEmployee_err"] = 0;
 			} ?>
@@ -92,20 +92,3 @@
 		</div>
 	</div>
 </main>
-
-<script>
-$(document).ready( function () { 
-    var fadeTarget = document.getElementById("error");
-    var fadeEffect = setInterval(function () {
-        if (!fadeTarget.style.opacity) {
-            fadeTarget.style.opacity = 1;
-        }
-        if (fadeTarget.style.opacity > 0) {
-            fadeTarget.style.opacity -= 0.2;
-        } else {
-            clearInterval(fadeEffect);
-			document.getElementById("error").style.display = 'none';
-        }
-    }, 200);
-});
-</script>
